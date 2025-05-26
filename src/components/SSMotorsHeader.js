@@ -2,7 +2,7 @@ import React from "react";
 
 const SSMotorsHeader = () => {
   return (
-    <div>
+    <div className="bg-slate-500">
       <p>header</p>
     </div>
   );
