@@ -1,9 +1,9 @@
-import React from "react";
+import SSMotorsLogin from "./customComponents/SSMotorsLogin";
 
 const SSMotorsBody = () => {
   return (
-    <div>
-      <p>body</p>
+    <div className="w-full md:w-[35%] mx-auto">
+      <SSMotorsLogin />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import SSMotorsAboutUs from "./components/SSMotorsAboutUs";
-import SSMotorsBody from "./components/SSMotorsBody";
+import SSMotorsLogin from "./components/customComponents/SSMotorsLogin";
+import SSMotorsHome from "./components/SSMotorsHome";
 import SSMotorsContactUs from "./components/SSMotorsContactUs";
-import SSMotorsLogin from "./components/SSMotorsLogin";
 import SSMotorsHeader from "./components/SSMotorsHeader";
 import SSMotorsFooter from "./components/SSMotorsFooter";
 import ssMotorsStore from "./store/ssMotorsStore";
@@ -27,7 +27,7 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <SSMotorsBody />,
+        element: <SSMotorsHome />,
       },
       {
         path: "/login",

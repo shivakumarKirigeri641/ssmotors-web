@@ -1,9 +1,10 @@
 import React from "react";
+import SSMotorsNavBar from "./customComponents/SSMotorsNavBar";
 
 const SSMotorsHeader = () => {
   return (
-    <div className="bg-slate-500">
-      <p>header</p>
+    <div>
+      <SSMotorsNavBar />
     </div>
   );
 };
