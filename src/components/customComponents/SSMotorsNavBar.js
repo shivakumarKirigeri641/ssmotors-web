@@ -4,7 +4,7 @@ import SSMotorsDrawer from "./SSMotorsDrawer";
 const SSMotorsNavBar = () => {
   return (
     <div className="navbar bg-base-200 shadow-sm static">
-      <div className="navbar-start">
+      <div className="hidden md:navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <svg
@@ -39,7 +39,7 @@ const SSMotorsNavBar = () => {
           </ul>
         </div>
       </div>
-      <div className="navbar-center flex">
+      <div className="navbar-start md:navbar-center flex">
         <img className="w-14" src={require("../../images/logo.jpg")}></img>
         <Link to="/" className="hidden md:btn md:btn-ghost md:text-xl">
           SS Motors{" "}

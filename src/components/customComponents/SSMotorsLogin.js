@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import SSMotorsErrorMsg from "./SSMotorsErrorMsg";
-
+import axios from "axios";
+import { SERVER } from "../../utils/constants";
+import { useDispatch } from "react-redux";
+import { addAdmin } from "../../store/slices/ssMotorsadminSlices";
+import { useNavigate } from "react-router";
 const SSMotorsLogin = () => {
+  const [email, setemail] = useState("shiva@gmail.com");
+  const [password, setpassword] = useState("Shiva@123");
+  const [errorMsg, seterrorMsg] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogin = async () => {
+    const result = await axios.post(
+      SERVER + "/admin/login",
+      { email, password },
+      { withCredentials: true }
+    );
+    console.log(result);
+    dispatch(addAdmin(result?.data));
+    navigate("/");
+  };
   return (
     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 m-4 w-full md:w-[40%] mx-auto">
       <div className="flex items-center justify-center">
@@ -27,6 +46,10 @@ const SSMotorsLogin = () => {
         type="email"
         className="input w-full outline-none"
         placeholder="Email"
+        value={email}
+        onChange={(e) => {
+          setemail(e.target.value);
+        }}
       />
 
       <label className="label">Password</label>
@@ -34,10 +57,21 @@ const SSMotorsLogin = () => {
         type="password"
         className="input w-full  outline-none"
         placeholder="Password"
+        value={password}
+        onChange={(e) => {
+          setpassword(e.target.value);
+        }}
       />
 
-      <button className="btn btn-neutral mt-4">Login</button>
-      <SSMotorsErrorMsg errorMsg="Invalid credentails" />
+      <button
+        className="btn btn-neutral mt-4"
+        onClick={async () => {
+          await handleLogin();
+        }}
+      >
+        Login
+      </button>
+      {"" !== errorMsg ? <SSMotorsErrorMsg errorMsg={errorMsg} /> : ""}
     </fieldset>
   );
 };
