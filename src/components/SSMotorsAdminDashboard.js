@@ -1,6 +1,11 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 const SSMotorsAdminDashboard = () => {
   const navigate = useNavigate();
+  const admindata = useSelector((store) => store.ssMotorsadmin);
+  const servedVehicles = useSelector((store) => store.ssMotorsServedVehicles);
+  useEffect(() => {}, []);
   return (
     <div>
       <p>admin SSMotorsAdminDashbaord</p>
@@ -20,7 +25,7 @@ const SSMotorsAdminDashboard = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          class="lucide lucide-log-out-icon lucide-log-out"
+          className="lucide lucide-log-out-icon lucide-log-out"
         >
           <path d="m16 17 5-5-5-5" />
           <path d="M21 12H9" />
