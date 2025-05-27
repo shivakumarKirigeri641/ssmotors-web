@@ -12,31 +12,38 @@ const SSMotorsLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogin = async () => {
-    const result = await axios.post(
-      SERVER + "/admin/login",
-      { email, password },
-      { withCredentials: true }
-    );
-    console.log(result);
-    dispatch(addAdmin(result?.data));
-    navigate("/");
+    try {
+      const result = await axios.post(
+        SERVER + "/admin/login",
+        { email, password },
+        { withCredentials: true }
+      );
+      console.log(result);
+      dispatch(addAdmin(result?.data));
+      navigate("/");
+    } catch (err) {
+      if (401 === err.status) {
+        seterrorMsg("Invalid credentials!");
+      }
+    }
   };
   return (
     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 m-4 w-full md:w-[40%] mx-auto">
       <div className="flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
-          strokeWidth={1.5}
+          fill="none"
           stroke="currentColor"
-          className="size-6 mx-6"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-key-round-icon lucide-key-round"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-          />
+          <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
+          <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
         </svg>
         <legend className="fieldset-legend text-2xl text-center">Login</legend>
       </div>
