@@ -1,37 +1,45 @@
+import axios from "axios";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { SERVER } from "../utils/constants";
+import { addServedVehicles } from "../store/slices/ssMotorsServedVehiclesSlice";
+import { addServicingVehicles } from "../store/slices/ssMotorsServicingVehiclesSlice";
 const SSMotorsAdminDashboard = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const admindata = useSelector((store) => store.ssMotorsadmin);
   const servedVehicles = useSelector((store) => store.ssMotorsServedVehicles);
-  useEffect(() => {}, []);
+  const servicingVehicles = useSelector(
+    (store) => store.ssMotorsServicingVehicles
+  );
+  useEffect(() => {
+    const fetchServicedVehicles = async () => {
+      const result = await axios.get(
+        SERVER + "/admin/feed/getservicedvehicles",
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(result?.data?.data);
+      dispatch(addServedVehicles(result?.data?.data));
+    };
+    const fetchServicingVehicles = async () => {
+      const result = await axios.get(
+        SERVER + "/admin/feed/getservicingvehicles",
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(result?.data?.data);
+      dispatch(addServicingVehicles(result?.data?.data));
+    };
+    fetchServicedVehicles();
+    fetchServicingVehicles();
+  }, []);
   return (
     <div>
-      <p>admin SSMotorsAdminDashbaord</p>
-      <button
-        className="btn btn-secondary"
-        onClick={() => {
-          navigate("/logout");
-        }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-log-out-icon lucide-log-out"
-        >
-          <path d="m16 17 5-5-5-5" />
-          <path d="M21 12H9" />
-          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-        </svg>
-      </button>
+      <p>SSMotorsAdminDashbaord</p>
     </div>
   );
 };

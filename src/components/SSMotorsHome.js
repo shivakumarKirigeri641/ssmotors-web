@@ -4,7 +4,7 @@ import SSMotorsAdminDashboard from "./SSMotorsAdminDashboard";
 
 const SSMotorsHome = () => {
   const admindata = useSelector((store) => store.ssMotorsadmin);
-  console.log("admin:", admindata);
+  //console.log("admin:", admindata);
   return admindata ? (
     <SSMotorsAdminDashboard />
   ) : (

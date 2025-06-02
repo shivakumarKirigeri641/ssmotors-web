@@ -4,7 +4,7 @@ const SSMotorsDrawer = () => {
   const [drawopen, setdrawopen] = useState(false);
   const handleClick = () => {
     setdrawopen(!drawopen);
-    console.log(drawopen);
+    //console.log(drawopen);
   };
   return (
     <div className="drawer">

@@ -18,7 +18,7 @@ const SSMotorsLogin = () => {
         { email, password },
         { withCredentials: true }
       );
-      console.log(result);
+      //console.log(result);
       dispatch(addAdmin(result?.data));
       navigate("/");
     } catch (err) {
