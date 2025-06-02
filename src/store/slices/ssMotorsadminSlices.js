@@ -5,10 +5,10 @@ const ssMotorsadminSlices = createSlice({
   initialState: null,
   reducers: {
     addAdmin: (state, action) => {
-      state = action.payload;
+      return action.payload;
     },
     removeAdmin: (state) => {
-      state = null;
+      return null;
     },
   },
 });
