@@ -8,6 +8,7 @@ import SSMotorsHeader from "./components/SSMotorsHeader";
 import SSMotorsFooter from "./components/SSMotorsFooter";
 import ssMotorsStore from "./store/ssMotorsStore";
 import { Provider } from "react-redux";
+import SSMotorsLogout from "./components/SSMotorsLogout";
 const AppLayout = () => {
   return (
     <Provider store={ssMotorsStore}>
@@ -32,6 +33,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <SSMotorsLogin />,
+      },
+      {
+        path: "/logout",
+        element: <SSMotorsLogout />,
       },
       {
         path: "/aboutus",

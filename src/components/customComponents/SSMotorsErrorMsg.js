@@ -5,16 +5,18 @@ const SSMotorsErrorMsg = ({ errorMsg }) => {
     <div role="alert" className="alert alert-error">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6 shrink-0 stroke-current"
-        fill="none"
+        width="24"
+        height="24"
         viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-ban-icon lucide-ban"
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
+        <circle cx="12" cy="12" r="10" />
+        <path d="m4.9 4.9 14.2 14.2" />
       </svg>
       <span>{errorMsg}</span>
     </div>
