@@ -5,16 +5,18 @@ import { Link, useNavigate } from "react-router";
 import { SERVER } from "../utils/constants";
 import { addServedVehicles } from "../store/slices/ssMotorsServedVehiclesSlice";
 import { addServicingVehicles } from "../store/slices/ssMotorsServicingVehiclesSlice";
+import { addSummary } from "../store/slices/ssMotorsServiceSummarySlices";
 import SSMotorsServicingVehicleDetails from "./customComponents/SSMotorsServicingVehicleDetails";
 import SSMotorsServicedVehiclesDetails from "./customComponents/SSMotorsServicedVehiclesDetails";
+import SSMotorsServiceSummary from "./customComponents/SSMotorsServiceSummary";
 const SSMotorsAdminDashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const admindata = useSelector((store) => store.ssMotorsadmin);
+  const summarydata = useSelector((store) => store.ssMotorsServiceSummary);
   const servicingVehicles = useSelector(
     (store) => store.ssMotorsServicingVehicles
   );
-  console.log(servicingVehicles);
   useEffect(() => {
     const fetchServicedVehicles = async () => {
       const result = await axios.get(
@@ -23,7 +25,6 @@ const SSMotorsAdminDashboard = () => {
           withCredentials: true,
         }
       );
-      //console.log(result?.data?.data);
       dispatch(addServedVehicles(result?.data?.data));
     };
     const fetchServicingVehicles = async () => {
@@ -35,13 +36,24 @@ const SSMotorsAdminDashboard = () => {
       );
       dispatch(addServicingVehicles(result?.data?.data));
     };
+    const fetchsummary = async () => {
+      const resultsummary = await axios.get(
+        SERVER + "/admin/feed/getservicesummary",
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(resultsummary?.data?.data);
+      dispatch(addSummary(resultsummary?.data?.data));
+    };
+    fetchsummary();
     fetchServicedVehicles();
     fetchServicingVehicles();
   }, []);
   return !servicingVehicles ? (
     <div>Loading...</div>
   ) : (
-    <div className="m-1 h-screen">
+    <div className="m-1 sm:h-screen">
       {/**servicing & served vehicles data */}
       <div className="sm:flex justify-center w-full h-[70%]">
         <SSMotorsServicingVehicleDetails
@@ -51,7 +63,9 @@ const SSMotorsAdminDashboard = () => {
       </div>
       {/**servicing & served vehicles data */}
       {/**servicing summary */}
-      <div className="">summary</div>
+      <div className="">
+        <SSMotorsServiceSummary summarydata={summarydata} />
+      </div>
       {/**servicing summary */}
     </div>
   );

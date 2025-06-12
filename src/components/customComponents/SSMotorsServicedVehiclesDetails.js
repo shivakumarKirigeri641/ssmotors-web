@@ -4,27 +4,61 @@ import { useDispatch, useSelector } from "react-redux";
 const SSMotorsServicedVehiclesDetails = () => {
   const [searchText, setsearchText] = useState("");
   const servedVehicles = useSelector((store) => store.ssMotorsServedVehicles);
-  const servedVehiclesFilter = useSelector(
-    (store) => store.ssMotorsServedVehicles
+  const servedVehiclesFilter = servedVehicles.filter(
+    (x) =>
+      x.vehicleInfo?.variantId?.variantName
+        .toLowerCase()
+        .includes(searchText.toLowerCase()) ||
+      x.vehicleInfo?.vehicleNumber
+        .toLowerCase()
+        .includes(searchText.toLowerCase()) ||
+      x.customerInfo?.customerName
+        .toLowerCase()
+        .includes(searchText.toLowerCase()) ||
+      x.customerInfo?.primaryMobileNumber
+        .toLowerCase()
+        .includes(searchText.toLowerCase())
   );
   return (
-    <div className="border border-slate-600 rounded-md ml-1">
+    <div className="border border-slate-600 rounded-md ml-1 sd:h-[100%]">
       <div className="">
-        <p className="bg-[#123456] text-blue-50 p-2 text-center font-bold text-lg rounded-md">
-          Serviced vehicles
-        </p>
-        {/**search fields */}
-        <div className="relative flex justify-between">
+        <div className="flex justify-center bg-[#123456] text-blue-50 p-2 text-center font-bold text-lg rounded-md">
           <img
-            className="absolute w-5 h-5 right-5 top-[25%]"
-            src={require("../../images/search.png")}
+            className="w-8 mx-2"
+            src={require("../../images/bikeserved.png")}
           ></img>
+          <p className="">Serviced vehicles</p>
+        </div>
+        {/**search fields */}
+        <div className="flex justify-between">
           <input
             className="w-full pl-5 p-2 my-1 rounded-sm border-b-2 border-slate-400 outline-none"
             type="text"
             placeholder="Search brand/model/customer name/mobile number"
             value={searchText}
+            onChange={(e) => setsearchText(e.target.value)}
           />
+          {"" === searchText ? (
+            <div className="flex justify-center items-center m-2">
+              <img
+                className="w-5 h-5"
+                src={require("../../images/search.png")}
+              ></img>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center m-2">
+              <div>
+                <img
+                  className="w-10 h-5 cursor-pointer text-center"
+                  src={require("../../images/clear.png")}
+                  onClick={() => {
+                    setsearchText("");
+                  }}
+                ></img>
+              </div>
+              <p className="mx-1">Count:{servedVehiclesFilter?.length}</p>
+            </div>
+          )}
         </div>
       </div>
       {/**search fields */}
@@ -41,12 +75,14 @@ const SSMotorsServicedVehiclesDetails = () => {
           </thead>
           <tbody>
             {servedVehiclesFilter?.map((x, index) => (
-              <tr className="hover:bg-slate-700">
+              <tr key={index} className="hover:bg-slate-700">
                 <th>{index + 1}</th>
                 <td className="font-semibold underline">
                   <Link to="">{x?.vehicleInfo?.vehicleNumber}</Link>
                 </td>
-                <td>{x?.vehicleInfo?.variantId?.variantName}</td>
+                <td className="hover:bg-slate-700 truncate w-[200px]">
+                  {x?.vehicleInfo?.variantId?.variantName}
+                </td>
                 <td>{x?.customerInfo?.customerName}</td>
                 <td>{x?.customerInfo?.primaryMobileNumber}</td>
               </tr>
