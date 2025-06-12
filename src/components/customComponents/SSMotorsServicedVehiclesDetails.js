@@ -30,21 +30,7 @@ const SSMotorsServicedVehiclesDetails = () => {
           <p className="">Serviced vehicles</p>
         </div>
         {/**search fields */}
-        <div className="relative flex justify-between">
-          {"" === searchText ? (
-            <img
-              className="absolute w-5 h-5 right-5 top-[25%]"
-              src={require("../../images/search.png")}
-            ></img>
-          ) : (
-            <img
-              className="absolute w-5 h-5 right-5 top-[25%] cursor-pointer"
-              src={require("../../images/clear.png")}
-              onClick={() => {
-                setsearchText("");
-              }}
-            ></img>
-          )}
+        <div className="flex justify-between">
           <input
             className="w-full pl-5 p-2 my-1 rounded-sm border-b-2 border-slate-400 outline-none"
             type="text"
@@ -52,6 +38,27 @@ const SSMotorsServicedVehiclesDetails = () => {
             value={searchText}
             onChange={(e) => setsearchText(e.target.value)}
           />
+          {"" === searchText ? (
+            <div className="flex justify-center items-center m-2">
+              <img
+                className="w-5 h-5"
+                src={require("../../images/search.png")}
+              ></img>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center m-2">
+              <div>
+                <img
+                  className="w-10 h-5 cursor-pointer text-center"
+                  src={require("../../images/clear.png")}
+                  onClick={() => {
+                    setsearchText("");
+                  }}
+                ></img>
+              </div>
+              <p className="mx-1">Count:{servedVehiclesFilter?.length}</p>
+            </div>
+          )}
         </div>
       </div>
       {/**search fields */}
