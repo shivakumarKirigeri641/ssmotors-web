@@ -4,15 +4,31 @@ import { useDispatch, useSelector } from "react-redux";
 const SSMotorsServicedVehiclesDetails = () => {
   const [searchText, setsearchText] = useState("");
   const servedVehicles = useSelector((store) => store.ssMotorsServedVehicles);
-  const servedVehiclesFilter = useSelector(
-    (store) => store.ssMotorsServedVehicles
+  const servedVehiclesFilter = servedVehicles.filter(
+    (x) =>
+      x.vehicleInfo?.variantId?.variantName
+        .toLowerCase()
+        .includes(searchText.toLowerCase()) ||
+      x.vehicleInfo?.vehicleNumber
+        .toLowerCase()
+        .includes(searchText.toLowerCase()) ||
+      x.customerInfo?.customerName
+        .toLowerCase()
+        .includes(searchText.toLowerCase()) ||
+      x.customerInfo?.primaryMobileNumber
+        .toLowerCase()
+        .includes(searchText.toLowerCase())
   );
   return (
-    <div className="border border-slate-600 rounded-md ml-1">
+    <div className="border border-slate-600 rounded-md ml-1 sd:h-[100%]">
       <div className="">
-        <p className="bg-[#123456] text-blue-50 p-2 text-center font-bold text-lg rounded-md">
-          Serviced vehicles
-        </p>
+        <div className="flex justify-center bg-[#123456] text-blue-50 p-2 text-center font-bold text-lg rounded-md">
+          <img
+            className="w-8 mx-2"
+            src={require("../../images/bikeserved.png")}
+          ></img>
+          <p className="">Serviced vehicles</p>
+        </div>
         {/**search fields */}
         <div className="relative flex justify-between">
           <img
@@ -24,6 +40,7 @@ const SSMotorsServicedVehiclesDetails = () => {
             type="text"
             placeholder="Search brand/model/customer name/mobile number"
             value={searchText}
+            onChange={(e) => setsearchText(e.target.value)}
           />
         </div>
       </div>
@@ -41,7 +58,7 @@ const SSMotorsServicedVehiclesDetails = () => {
           </thead>
           <tbody>
             {servedVehiclesFilter?.map((x, index) => (
-              <tr className="hover:bg-slate-700">
+              <tr key={index} className="hover:bg-slate-700">
                 <th>{index + 1}</th>
                 <td className="font-semibold underline">
                   <Link to="">{x?.vehicleInfo?.vehicleNumber}</Link>
