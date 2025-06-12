@@ -6,7 +6,7 @@ const ssMotorsStore = configureStore({
   reducer: {
     ssMotorsadmin: ssMotorsadminReducer,
     ssMotorsServedVehicles: ssMotorsServedVehiclesReducer,
-    ssMotorsServedVehicles: ssMotorsServicingVehiclesReducer,
+    ssMotorsServicingVehicles: ssMotorsServicingVehiclesReducer,
   },
 });
 export default ssMotorsStore;

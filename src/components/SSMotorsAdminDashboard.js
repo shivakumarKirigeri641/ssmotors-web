@@ -1,18 +1,20 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { SERVER } from "../utils/constants";
 import { addServedVehicles } from "../store/slices/ssMotorsServedVehiclesSlice";
 import { addServicingVehicles } from "../store/slices/ssMotorsServicingVehiclesSlice";
+import SSMotorsServicingVehicleDetails from "./customComponents/SSMotorsServicingVehicleDetails";
+import SSMotorsServicedVehiclesDetails from "./customComponents/SSMotorsServicedVehiclesDetails";
 const SSMotorsAdminDashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const admindata = useSelector((store) => store.ssMotorsadmin);
-  const servedVehicles = useSelector((store) => store.ssMotorsServedVehicles);
   const servicingVehicles = useSelector(
     (store) => store.ssMotorsServicingVehicles
   );
+  console.log(servicingVehicles);
   useEffect(() => {
     const fetchServicedVehicles = async () => {
       const result = await axios.get(
@@ -21,7 +23,7 @@ const SSMotorsAdminDashboard = () => {
           withCredentials: true,
         }
       );
-      console.log(result?.data?.data);
+      //console.log(result?.data?.data);
       dispatch(addServedVehicles(result?.data?.data));
     };
     const fetchServicingVehicles = async () => {
@@ -31,15 +33,26 @@ const SSMotorsAdminDashboard = () => {
           withCredentials: true,
         }
       );
-      console.log(result?.data?.data);
       dispatch(addServicingVehicles(result?.data?.data));
     };
     fetchServicedVehicles();
     fetchServicingVehicles();
   }, []);
-  return (
-    <div>
-      <p>SSMotorsAdminDashbaord</p>
+  return !servicingVehicles ? (
+    <div>Loading...</div>
+  ) : (
+    <div className="m-1 h-screen">
+      {/**servicing & served vehicles data */}
+      <div className="sm:flex justify-center w-full h-[70%]">
+        <SSMotorsServicingVehicleDetails
+          servicingVehicles={servicingVehicles}
+        />
+        <SSMotorsServicedVehiclesDetails />
+      </div>
+      {/**servicing & served vehicles data */}
+      {/**servicing summary */}
+      <div className="">summary</div>
+      {/**servicing summary */}
     </div>
   );
 };
