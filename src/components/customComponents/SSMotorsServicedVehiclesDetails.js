@@ -31,10 +31,20 @@ const SSMotorsServicedVehiclesDetails = () => {
         </div>
         {/**search fields */}
         <div className="relative flex justify-between">
-          <img
-            className="absolute w-5 h-5 right-5 top-[25%]"
-            src={require("../../images/search.png")}
-          ></img>
+          {"" === searchText ? (
+            <img
+              className="absolute w-5 h-5 right-5 top-[25%]"
+              src={require("../../images/search.png")}
+            ></img>
+          ) : (
+            <img
+              className="absolute w-5 h-5 right-5 top-[25%] cursor-pointer"
+              src={require("../../images/clear.png")}
+              onClick={() => {
+                setsearchText("");
+              }}
+            ></img>
+          )}
           <input
             className="w-full pl-5 p-2 my-1 rounded-sm border-b-2 border-slate-400 outline-none"
             type="text"
