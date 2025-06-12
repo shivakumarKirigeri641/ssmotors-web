@@ -23,7 +23,7 @@ const SSMotorsServicingVehicleDetails = ({ servicingVehicles }) => {
         </thead>
         <tbody>
           {servicingVehicles?.map((x, index) => (
-            <tr key={index} className="hover:bg-slate-700">
+            <tr key={index} className="hover:bg-slate-700 truncate w-[200px]">
               <th>{index + 1}</th>
               <td className="font-semibold underline">
                 <Link to="">{x?.vehicleInfo?.vehicleNumber}</Link>

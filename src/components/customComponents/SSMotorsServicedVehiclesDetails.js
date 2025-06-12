@@ -80,7 +80,9 @@ const SSMotorsServicedVehiclesDetails = () => {
                 <td className="font-semibold underline">
                   <Link to="">{x?.vehicleInfo?.vehicleNumber}</Link>
                 </td>
-                <td>{x?.vehicleInfo?.variantId?.variantName}</td>
+                <td className="hover:bg-slate-700 truncate w-[200px]">
+                  {x?.vehicleInfo?.variantId?.variantName}
+                </td>
                 <td>{x?.customerInfo?.customerName}</td>
                 <td>{x?.customerInfo?.primaryMobileNumber}</td>
               </tr>
