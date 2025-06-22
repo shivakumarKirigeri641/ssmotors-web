@@ -1,4 +1,4 @@
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import ReactDOM from "react-dom/client";
 import appStore from "./store/appStore";
 import Credentials from "./components/Credentials";
@@ -9,7 +9,9 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 const AppLayout = () => {
   return (
     <Provider store={appStore}>
+      <Header />
       <Outlet />
+      <Footer />
     </Provider>
   );
 };
