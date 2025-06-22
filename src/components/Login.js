@@ -1,8 +1,13 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { SERVER } from "../utils/constants";
 import { useState } from "react";
+import { addAdmin } from "../store/slices/adminSlice";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setemail] = useState("shiva@gmail.com");
   const [password, setpassword] = useState("Shiva@123");
   const handleLogin = async () => {
@@ -12,8 +17,10 @@ const Login = () => {
         { email, password },
         { withCredentials: true }
       );
-      console.log(result);
+      dispatch(addAdmin(result?.data?.data));
+      navigate("/dashboard");
     } catch (err) {
+      console.log(err.message);
       const popup = document.getElementById("errorPopup");
       popup.classList.remove("opacity-0");
       popup.classList.add("opacity-100");
@@ -22,8 +29,7 @@ const Login = () => {
       setTimeout(() => {
         popup.classList.remove("opacity-100");
         popup.classList.add("opacity-0");
-      }, 1200);
-
+      }, 3000);
       return false; // Prevent form submission
     }
   };
@@ -32,14 +38,23 @@ const Login = () => {
       className="h-screen w-[100%] md:w-[30%]
     flex items-center justify-center bg-gradient-to-b from-[#585B56] to-[#333536]"
     >
-      <div className=" bg-[#FEFEFE] h-[80%] w-[85%] rounded-[25] shadow-slate-700 shadow-lg">
-        <div className="text-center p-5 text-2xl font-semibold">Login</div>
-        <div className=" mx-auto w-[70%]">
+      <div className="relative bg-[#FEFEFE] h-[80%] w-[85%] rounded-[25] shadow-slate-700 shadow-lg">
+        <div className="text-center p-5 text-2xl font-semibold">
+          <img
+            className="w-[30%] mx-auto mt-10"
+            src={require("../images/logo.jpg")}
+          ></img>
+        </div>
+        <div className="mx-auto w-[70%]">
           {/**input email */}
-          <div className="m-2 mt-10">
+          <div className="relative m-2 mt-10">
+            <img
+              className="absolute top-[30%] left-3"
+              src={require("../images/icons/user.svg")}
+            ></img>
             <input
               type="text"
-              className="w-full border border-slate-400 rounded-[25] p-3 mx-auto m-1 outline-none text-black"
+              className="pl-12 w-full border border-slate-400 rounded-[25] p-3 mx-auto m-1 outline-none text-black"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setemail(e.target.value)}
@@ -47,11 +62,15 @@ const Login = () => {
           </div>
           {/**input email */}
           {/**input password */}
-          <div className="m-2 mt-3">
+          <div className="relative m-2 mt-3">
+            <img
+              className="absolute top-[30%] left-3"
+              src={require("../images/icons/password.svg")}
+            ></img>
             <input
               type="password"
-              className="w-full border border-gray-400 rounded-[25] p-3 mx-auto m-1 outline-none  text-black"
-              placeholder="Enter the password"
+              className="pl-12 w-full border border-gray-400 rounded-[25] p-3 mx-auto m-1 outline-none text-black"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setpassword(e.target.value)}
             ></input>
@@ -59,10 +78,10 @@ const Login = () => {
           {/**input password */}
 
           {/**login button */}
-          <div className="mt-10 text-white font-bold text-center">
+          <div className="mt-10 text-white font-bold text-center outline-none">
             <button
               className="p-3 border border-gray-500 rounded-md w-[40%] md:w-[50%]
-          bg-gradient-to-b from-[#5D7676] to-[#789088] cursor-pointer hover:w-[60%] duration-200 ease-in-out"
+          bg-[#2F5A6B] cursor-pointer hover:w-[60%] duration-200 ease-in-out"
               onClick={() => {
                 handleLogin();
               }}
@@ -83,9 +102,10 @@ const Login = () => {
         </div>
         <div
           id="errorPopup"
-          class="fixed top-5 right-5 bg-red-600 text-white text-xl px-4 py-2 rounded shadow-md opacity-0 transition-opacity duration-500"
+          className="absolute bottom-8 text-white font-bold text-center bg-red-500
+          px-4 py-2 rounded shadow-md opacity-0 transition-opacity duration-500 w-[100%]"
         >
-          ❌ Invalid credentials!
+          Invalid credentials!
         </div>
       </div>
     </div>
