@@ -1,24 +1,36 @@
-import React from "react";
 import { Link } from "react-router";
+import { SERVER } from "../utils/constants";
+import { useState } from "react";
 
 const Login = () => {
-  const handleLogin = () => {
-    const popup = document.getElementById("errorPopup");
-    popup.classList.remove("opacity-0");
-    popup.classList.add("opacity-100");
+  const [email, setemail] = useState("shiva@gmail.com");
+  const [password, setpassword] = useState("Shiva@123");
+  const handleLogin = async () => {
+    try {
+      const result = await axios.post(
+        SERVER + "/admin/login",
+        { email, password },
+        { withCredentials: true }
+      );
+      console.log(result);
+    } catch (err) {
+      const popup = document.getElementById("errorPopup");
+      popup.classList.remove("opacity-0");
+      popup.classList.add("opacity-100");
 
-    // Hide after 1 second
-    setTimeout(() => {
-      popup.classList.remove("opacity-100");
-      popup.classList.add("opacity-0");
-    }, 1200);
+      // Hide after 1 second
+      setTimeout(() => {
+        popup.classList.remove("opacity-100");
+        popup.classList.add("opacity-0");
+      }, 1200);
 
-    return false; // Prevent form submission
+      return false; // Prevent form submission
+    }
   };
   return (
     <div
       className="h-screen w-[100%] md:w-[30%]
-    flex items-center justify-center bg-gradient-to-b from-[#789088] to-[#5D7676]"
+    flex items-center justify-center bg-gradient-to-b from-[#585B56] to-[#333536]"
     >
       <div className=" bg-[#FEFEFE] h-[80%] w-[85%] rounded-[25] shadow-slate-700 shadow-lg">
         <div className="text-center p-5 text-2xl font-semibold">Login</div>
@@ -27,8 +39,10 @@ const Login = () => {
           <div className="m-2 mt-10">
             <input
               type="text"
-              className="w-full border border-slate-400 rounded-[25] p-3 mx-auto m-1 outline-none text-gray-400"
+              className="w-full border border-slate-400 rounded-[25] p-3 mx-auto m-1 outline-none text-black"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
             ></input>
           </div>
           {/**input email */}
@@ -36,8 +50,10 @@ const Login = () => {
           <div className="m-2 mt-3">
             <input
               type="password"
-              className="w-full border border-gray-400 rounded-[25] p-3 mx-auto m-1 outline-none  text-gray-400"
+              className="w-full border border-gray-400 rounded-[25] p-3 mx-auto m-1 outline-none  text-black"
               placeholder="Enter the password"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
             ></input>
           </div>
           {/**input password */}
