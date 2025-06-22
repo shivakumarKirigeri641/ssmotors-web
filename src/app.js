@@ -1,5 +1,3 @@
-import "flowbite";
-import "flowbite-datepicker";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import appStore from "./store/appStore";
