@@ -11,52 +11,63 @@ const Login = () => {
     setTimeout(() => {
       popup.classList.remove("opacity-100");
       popup.classList.add("opacity-0");
-    }, 1000);
+    }, 1200);
 
     return false; // Prevent form submission
   };
   return (
     <div
-      className="border border-slate-400 h-screen w-[100%] md:w-[35%] m-1
-    flex items-center justify-center bg-gradient-to-r from-[#3da7a7] to-[#06686b]"
+      className="h-screen w-[100%] md:w-[30%]
+    flex items-center justify-center bg-gradient-to-b from-[#789088] to-[#5D7676]"
     >
-      <div className=" bg-[#FEFEFE] border border-blue-600 h-[80%] w-[85%] rounded-[25]">
+      <div className=" bg-[#FEFEFE] h-[80%] w-[85%] rounded-[25] shadow-slate-700 shadow-lg">
         <div className="text-center p-5 text-2xl font-semibold">Login</div>
-        <div className="m-2">
-          <input
-            type="text"
-            className="w-full border border-slate-400 rounded-full p-2 mx-auto m-1 outline-none text-gray-400"
-            placeholder="Enter your email"
-          ></input>
-        </div>
-        <div className="m-2">
-          <input
-            type="password"
-            className="w-full border border-gray-400 rounded-full p-2 mx-auto m-1 outline-none  text-gray-400"
-            placeholder="Enter the password"
-          ></input>
-        </div>
-        <div className="m-3 text-white font-semibold">
-          <button
-            className="p-3 border border-gray-500 w-full mx-auto rounded-full 
-          bg-gradient-to-b from-[#429af1] to-[#373999] hover:bg-gradient-to-t"
-            onClick={() => {
-              handleLogin();
-            }}
-          >
-            Login
-          </button>
-        </div>
-        <div className="m-3 text-center">
-          <Link>
-            <p className="font-semibold text-blue-700 italic cursor-pointer">
-              Forgot password?
-            </p>
-          </Link>
+        <div className=" mx-auto w-[70%]">
+          {/**input email */}
+          <div className="m-2 mt-10">
+            <input
+              type="text"
+              className="w-full border border-slate-400 rounded-[25] p-3 mx-auto m-1 outline-none text-gray-400"
+              placeholder="Enter your email"
+            ></input>
+          </div>
+          {/**input email */}
+          {/**input password */}
+          <div className="m-2 mt-3">
+            <input
+              type="password"
+              className="w-full border border-gray-400 rounded-[25] p-3 mx-auto m-1 outline-none  text-gray-400"
+              placeholder="Enter the password"
+            ></input>
+          </div>
+          {/**input password */}
+
+          {/**login button */}
+          <div className="mt-10 text-white font-bold text-center">
+            <button
+              className="p-3 border border-gray-500 rounded-md w-[40%] md:w-[50%]
+          bg-gradient-to-b from-[#5D7676] to-[#789088] cursor-pointer hover:w-[60%] duration-200 ease-in-out"
+              onClick={() => {
+                handleLogin();
+              }}
+            >
+              Login
+            </button>
+          </div>
+          {/**login button */}
+          {/**forgot password */}
+          <div className="mt-5 ml-2">
+            <Link>
+              <p className="font-semibold text-blue-700 italic cursor-pointer">
+                Forgot Password?
+              </p>
+            </Link>
+          </div>
+          {/**forgot password */}
         </div>
         <div
           id="errorPopup"
-          class="fixed top-5 right-5 bg-red-600 text-white px-4 py-2 rounded shadow-md opacity-0 transition-opacity duration-500"
+          class="fixed top-5 right-5 bg-red-600 text-white text-xl px-4 py-2 rounded shadow-md opacity-0 transition-opacity duration-500"
         >
           ❌ Invalid credentials!
         </div>

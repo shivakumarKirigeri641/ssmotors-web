@@ -22,7 +22,7 @@ const Credentials = () => {
   };
   return (
     <div className="flex">
-      <div className="relative aspect-[16:9] w-[0%] md:w-[65%] h-screen opacity-75">
+      <div className="relative aspect-[16:9] w-[0%] md:w-[70%] h-screen opacity-75">
         <img
           src={require("../images/loginimage.jpg")}
           alt="Image"
