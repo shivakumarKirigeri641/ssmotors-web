@@ -1,0 +1,37 @@
+{
+  "name": "ssmotors-web",
+  "version": "1.0.0",
+  "description": "UI for SS Motors (Two wheeler garage management system)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivakumarKirigeri641/ssmotors-web.git"
+  },
+  "author": "Shivakumar, Suhas, Amruta, Gangadhara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivakumarKirigeri641/ssmotors-web/issues"
+  },
+  "homepage": "https://github.com/shivakumarKirigeri641/ssmotors-web#readme",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.10",
+    "buffer": "^6.0.3",
+    "postcss": "^8.5.6",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.10.0",
+    "parcel": "^2.13.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.6.2",
+    "uikit": "^3.23.10"
+  }
+}
