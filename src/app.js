@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import appStore from "./store/appStore";
-import Login from "./components/Login";
+import Credentials from "./components/Credentials";
 import Dashboard from "./components/dashboardcomponents/Dashboard";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -9,9 +9,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 const AppLayout = () => {
   return (
     <Provider store={appStore}>
-      <Header />
       <Outlet />
-      <Footer />
     </Provider>
   );
 };
@@ -22,7 +20,7 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Login />,
+        element: <Credentials />,
       },
       {
         path: "/dashboard",
