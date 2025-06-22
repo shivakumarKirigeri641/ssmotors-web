@@ -39,7 +39,7 @@ const Login = () => {
     flex items-center justify-center bg-gradient-to-b from-[#585B56] to-[#333536]"
     >
       <div className="relative bg-[#FEFEFE] h-[80%] w-[85%] rounded-[25] shadow-slate-700 shadow-lg">
-        <div className="text-center p-5 text-2xl font-semibold">
+        <div className="text-center p-5 text-2xl font-semibold mt-16">
           <img
             className="w-[30%] mx-auto mt-10"
             src={require("../images/logo.jpg")}
@@ -91,9 +91,9 @@ const Login = () => {
           </div>
           {/**login button */}
           {/**forgot password */}
-          <div className="mt-5 ml-2">
+          <div className="mt-4 ml-2 text-center">
             <Link>
-              <p className="font-semibold text-blue-700 italic cursor-pointer">
+              <p className="font-semibold text-blue-700 cursor-pointer">
                 Forgot Password?
               </p>
             </Link>
@@ -102,7 +102,7 @@ const Login = () => {
         </div>
         <div
           id="errorPopup"
-          className="absolute bottom-8 text-white font-bold text-center bg-red-500
+          className="absolute top-10 text-white font-bold text-center bg-red-500
           px-4 py-2 rounded shadow-md opacity-0 transition-opacity duration-500 w-[100%]"
         >
           Invalid credentials!
