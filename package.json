@@ -19,6 +19,7 @@
   "homepage": "https://github.com/shivakumarKirigeri641/ssmotors-web#readme",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.10",
+    "buffer": "^6.0.3",
     "process": "^0.11.10"
   },
   "dependencies": {

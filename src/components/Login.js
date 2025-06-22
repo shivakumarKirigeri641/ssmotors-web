@@ -1,4 +1,17 @@
+import axios from "axios";
+import { SERVER } from "../utils/constants";
+import { useState } from "react";
 const Login = () => {
+  const [loginemail, setloginemail] = useState("shiva@gmail.com");
+  const [loginpassword, setloginpassword] = useState("Shiva@123");
+  const handleLogin = async () => {
+    const result = await axios(
+      SERVER + "/admin/login",
+      { loginemail, loginpassword },
+      { withCredentials: true }
+    );
+    console.log(result);
+  };
   return (
     <div>
       <div
@@ -33,6 +46,8 @@ const Login = () => {
                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@flowbite.com"
                 required
+                value={loginemail}
+                onChange={(e) => setloginemail(e.target.value)}
               />
             </div>
             <div className="mb-5">
@@ -46,8 +61,11 @@ const Login = () => {
                 type="password"
                 id="password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                 dark:focus:border-blue-500"
                 required
+                value={loginpassword}
+                onChange={(e) => setloginpassword(e.target.value)}
               />
             </div>
             <div className="flex items-start mb-5">
@@ -56,7 +74,8 @@ const Login = () => {
                   id="remember"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                  className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600
+                   dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                   required
                 />
               </div>
@@ -68,8 +87,10 @@ const Login = () => {
               </label>
             </div>
             <button
-              type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer"
+              onClick={() => {
+                handleLogin();
+              }}
             >
               Submit
             </button>
