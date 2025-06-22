@@ -1,16 +1,20 @@
 import axios from "axios";
 import { SERVER } from "../utils/constants";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addAdmin } from "../store/slices/adminSlice";
 const Login = () => {
-  const [loginemail, setloginemail] = useState("shiva@gmail.com");
-  const [loginpassword, setloginpassword] = useState("Shiva@123");
+  const dispatch = useDispatch();
+  const [email, setloginemail] = useState("shiva@gmail.com");
+  const [password, setloginpassword] = useState("Shiva@123");
   const handleLogin = async () => {
     const result = await axios(
       SERVER + "/admin/login",
-      { loginemail, loginpassword },
+      { email, password },
       { withCredentials: true }
     );
     console.log(result);
+    dispatch(addAdmin(result?.data?.data));
   };
   return (
     <div>
@@ -46,7 +50,7 @@ const Login = () => {
                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@flowbite.com"
                 required
-                value={loginemail}
+                value={email}
                 onChange={(e) => setloginemail(e.target.value)}
               />
             </div>
@@ -64,7 +68,7 @@ const Login = () => {
                 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
                  dark:focus:border-blue-500"
                 required
-                value={loginpassword}
+                value={password}
                 onChange={(e) => setloginpassword(e.target.value)}
               />
             </div>
