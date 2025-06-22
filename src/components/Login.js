@@ -2,6 +2,19 @@ import React from "react";
 import { Link } from "react-router";
 
 const Login = () => {
+  const handleLogin = () => {
+    const popup = document.getElementById("errorPopup");
+    popup.classList.remove("opacity-0");
+    popup.classList.add("opacity-100");
+
+    // Hide after 1 second
+    setTimeout(() => {
+      popup.classList.remove("opacity-100");
+      popup.classList.add("opacity-0");
+    }, 1000);
+
+    return false; // Prevent form submission
+  };
   return (
     <div
       className="border border-slate-400 h-screen w-[100%] md:w-[35%] m-1
@@ -27,6 +40,9 @@ const Login = () => {
           <button
             className="p-3 border border-gray-500 w-full mx-auto rounded-full 
           bg-gradient-to-b from-[#429af1] to-[#373999] hover:bg-gradient-to-t"
+            onClick={() => {
+              handleLogin();
+            }}
           >
             Login
           </button>
@@ -37,6 +53,12 @@ const Login = () => {
               Forgot password?
             </p>
           </Link>
+        </div>
+        <div
+          id="errorPopup"
+          class="fixed top-5 right-5 bg-red-600 text-white px-4 py-2 rounded shadow-md opacity-0 transition-opacity duration-500"
+        >
+          ❌ Invalid credentials!
         </div>
       </div>
     </div>
