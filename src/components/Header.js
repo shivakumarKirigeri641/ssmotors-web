@@ -47,15 +47,26 @@ const Header = () => {
               }}
             ></img>
             {opendrawer && (
-              <div className="absolute top-0 left-0 w-auto bg-gray-400 h-screen">
-                <div className="">
-                  <div
-                    className="text-2xl text-black m-3 cursor-pointer text-right"
-                    onClick={() => {
-                      setopendrawer(!opendrawer);
-                    }}
-                  >
-                    X
+              <div>
+                <div
+                  className={`fixed inset-0 bg-slate-400 z-40 transition-opacity duration-1000 ${
+                    opendrawer ? "opacity-50" : "opacity-0"
+                  }`}
+                  onClick={() => setopendrawer(false)}
+                ></div>
+                <div
+                  className={`fixed w-auto h-full text-white left-0 top-0 bg-slate-800 transform transition-transform duration-500 z-50 ${
+                    opendrawer ? "translate-x-0" : "-translate-x-full"
+                  }`}
+                >
+                  <div className="flex justify-between">
+                    <div></div>
+                    <button
+                      className="m-2 text-xl p-2 font-bold"
+                      onClick={() => setopendrawer(false)}
+                    >
+                      &times;
+                    </button>
                   </div>
                   <ul>
                     <li className="py-3 mx-2 cursor-pointer hover:underline underline-offset-2">
