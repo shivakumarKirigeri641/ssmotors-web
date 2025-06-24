@@ -3,6 +3,7 @@ import { SERVER } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { removeAdmin } from "../store/slices/adminSlice";
+import { removeservicingVehicles } from "../store/slices/servicingVehiclesSlice";
 import axios from "axios";
 
 const Header = () => {
@@ -17,6 +18,7 @@ const Header = () => {
         {},
         { withCredentials: true }
       );
+      dispatch(removeservicingVehicles());
       dispatch(removeAdmin());
       navigate("/");
     } catch (err) {
