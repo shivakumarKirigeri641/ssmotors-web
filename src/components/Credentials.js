@@ -18,7 +18,7 @@ const Credentials = () => {
     );
     console.log(result);
     dispatch(addAdmin(result?.data?.data));
-    navigate("/dashboard");
+    navigate("/admin/dashboard");
   };
   return (
     <div className="flex">

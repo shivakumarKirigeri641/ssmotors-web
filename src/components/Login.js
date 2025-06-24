@@ -18,7 +18,7 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addAdmin(result?.data?.data));
-      navigate("/dashboard");
+      navigate("/admin/dashboard");
     } catch (err) {
       console.log(err.message);
       const popup = document.getElementById("errorPopup");

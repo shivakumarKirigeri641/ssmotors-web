@@ -49,13 +49,11 @@ const Header = () => {
             {opendrawer && (
               <div>
                 <div
-                  className={`fixed inset-0 bg-slate-400 z-40 transition-opacity duration-1000 ${
-                    opendrawer ? "opacity-50" : "opacity-0"
-                  }`}
+                  className={`fixed inset-0 bg-gray-400 bg-opacity-70 z-40}`}
                   onClick={() => setopendrawer(false)}
                 ></div>
                 <div
-                  className={`fixed w-auto h-full text-white left-0 top-0 bg-slate-800 transform transition-transform duration-500 z-50 ${
+                  className={`fixed left-0 top-0 w-auto h-full px-5 text-white  bg-gradient-to-b from-[#495757] to-[#BABDC7] transform transition-transform duration-1000 ease-in-out z-50 shadow-lg ${
                     opendrawer ? "translate-x-0" : "-translate-x-full"
                   }`}
                 >
@@ -68,24 +66,53 @@ const Header = () => {
                       &times;
                     </button>
                   </div>
-                  <ul>
-                    <li className="py-3 mx-2 cursor-pointer hover:underline underline-offset-2">
-                      <Link>Servicing vehicles</Link>
+                  <ul className="">
+                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                      <div className="flex justify-start items-center">
+                        <img
+                          className="mx-2"
+                          src={require("../images/icons/servicingbike.svg")}
+                        ></img>
+                        <Link to="/admin/servicingvehicles">
+                          Servicing vehicles
+                        </Link>
+                      </div>
                     </li>
-                    <li className="py-3 mx-3 cursor-pointer hover:underline underline-offset-2">
-                      Served vehicles
+                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                      <div className="flex justify-start items-center">
+                        <img
+                          className="mx-2"
+                          src={require("../images/icons/servicedbike.svg")}
+                        ></img>
+                        <Link to="/admin/servedvehicles">Served vehicles</Link>
+                      </div>
                     </li>
-                    <li className="py-3 mx-3 cursor-pointer hover:underline underline-offset-2">
-                      Statistics
+                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                      <div className="flex justify-start items-center">
+                        <img
+                          className="mx-2"
+                          src={require("../images/icons/statistics.svg")}
+                        ></img>
+                        <Link to="/admin/statistics">Statistics</Link>
+                      </div>
                     </li>
-                    <li className="py-3 mx-3 cursor-pointer hover:underline underline-offset-2">
-                      Profile
+                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                      <div className="flex justify-start items-center">
+                        <img
+                          className="mx-2"
+                          src={require("../images/icons/profile.svg")}
+                        ></img>
+                        <Link to="/admin/profile">Profile</Link>
+                      </div>
                     </li>
-                    <li className="py-3 mx-3 cursor-pointer hover:underline underline-offset-2">
-                      Settings
-                    </li>
-                    <li className="py-3 mx-3 cursor-pointer hover:underline underline-offset-2">
-                      Logout
+                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                      <div className="flex justify-start items-center">
+                        <img
+                          className="mx-2"
+                          src={require("../images/icons/settings.svg")}
+                        ></img>
+                        <Link to="/admin/settings">Settings</Link>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -96,29 +123,64 @@ const Header = () => {
           {/**logo */}
           <div>
             <img
-              className="w-14 mx-auto"
+              className="w-14 mx-auto cursor-pointer"
               src={require("../images/logo.jpg")}
+              onClick={() => {
+                navigate("/admin/dashboard");
+              }}
             ></img>
           </div>
           {/**logo */}
           {/**logout */}
           <div className="flex p-1 mx-1 items-center justify-between">
             <div className="hidden md:block">
-              <ul className="flex justify-between">
+              <ul className="flex justify-between text-sm">
                 <li className="px-2 mx-2 cursor-pointer hover:underline underline-offset-2">
-                  <Link>Servicing vehicles</Link>
+                  <div className="flex justify-between items-center">
+                    <img
+                      className="mx-2"
+                      src={require("../images/icons/servicingbike.svg")}
+                    ></img>
+                    <Link to="/admin/servicingvehicles">
+                      Servicing vehicles
+                    </Link>
+                  </div>
                 </li>
                 <li className="px-2 mx-2 cursor-pointer hover:underline underline-offset-2">
-                  Served vehicles
+                  <div className="flex justify-between items-center">
+                    <img
+                      className="mx-2"
+                      src={require("../images/icons/servicedbike.svg")}
+                    ></img>
+                    <Link to="/admin/servedvehicles">Served vehicles</Link>
+                  </div>
                 </li>
                 <li className="px-2 mx-2 cursor-pointer hover:underline underline-offset-2">
-                  Statistics
+                  <div className="flex justify-between items-center">
+                    <img
+                      className="mx-2"
+                      src={require("../images/icons/statistics.svg")}
+                    ></img>
+                    <Link to="/admin/statistics">Statistics</Link>
+                  </div>
                 </li>
                 <li className="px-2 mx-2 cursor-pointer hover:underline underline-offset-2">
-                  Profile
+                  <div className="flex justify-between items-center">
+                    <img
+                      className="mx-2"
+                      src={require("../images/icons/profile.svg")}
+                    ></img>
+                    <Link to="/admin/profile">Profile</Link>
+                  </div>
                 </li>
                 <li className="px-2 mx-2 cursor-pointer hover:underline underline-offset-2">
-                  Settings
+                  <div className="flex justify-between items-center">
+                    <img
+                      className="mx-2"
+                      src={require("../images/icons/settings.svg")}
+                    ></img>
+                    <Link to="/admin/settings">Settings</Link>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -131,7 +193,7 @@ const Header = () => {
               <img src={require("../images/icons/logout.svg")}></img>
             </div>
             <button
-              className="hidden md:block bg-blue-700 text-white px-3 py-2 rounded-lg"
+              className="hidden md:block bg-blue-700 text-white px-3 py-2 rounded-lg text-sm"
               onClick={() => {
                 handleLogout();
               }}
