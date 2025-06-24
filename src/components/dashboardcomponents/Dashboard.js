@@ -12,12 +12,12 @@ const Dashboard = () => {
   });
   return (
     <div>
-      <div
-        className="h-screen large uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light"
-        data-src={require("../../images/wp2575889.webp")}
-        uk-img="loading: eager"
-      >
-        <h1></h1>
+      <div className="h-screen">
+        <h1>Hello {admin.email}...</h1>
+        <h2>
+          Welcome to SS Motors, garage management system - where your customer 2
+          wheeler results brand NEW!
+        </h2>
       </div>
     </div>
   );
