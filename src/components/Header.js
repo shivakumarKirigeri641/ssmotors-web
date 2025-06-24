@@ -35,7 +35,7 @@ const Header = () => {
   };
   return (
     admin && (
-      <div className="fixed opacity-100 w-full border-b border-slate-300 shadow-gray-500 shadow-lg">
+      <div className="w-full border-b border-slate-300 shadow-gray-500 shadow-lg">
         <div className="relative flex justify-between items-center">
           {/**menu for mobile */}
           <div className="visible md:hidden mx-3">

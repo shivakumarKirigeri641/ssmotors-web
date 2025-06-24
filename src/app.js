@@ -6,7 +6,7 @@ import Dashboard from "./components/dashboardcomponents/Dashboard";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AdminSettings from "./components/adminsettingscomponents/AdminSettings";
-import ServedVehicles from "./components/dashboardcomponents/ServedVehicles";
+import ServedVehicles from "./components/servedvehiclecomponents/ServedVehicles";
 import AdminProfile from "./components/profilecomponents/AdminProfile";
 import ServedVehicles from "./components/servedvehiclecomponents/ServedVehicles";
 import ServicingVehicles from "./components/servicingvehiclescomponents/ServicingVehicles";
