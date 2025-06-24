@@ -66,7 +66,7 @@ const Header = () => {
                       &times;
                     </button>
                   </div>
-                  <ul className="">
+                  <ul className="" onClick={() => setopendrawer(false)}>
                     <li className="p-3 cursor-pointer hover:underline underline-offset-2">
                       <div className="flex justify-start items-center">
                         <img
