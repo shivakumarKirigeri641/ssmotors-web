@@ -5,7 +5,7 @@ const ServicingVehiclesTableMobScr = () => {
     <div className="text-gray-500 text-sm w-full h-screen">
       <div className="">
         <table className="table-auto">
-          <thead className="text-left">
+          <thead className="text-left bg-slate-300 text-gray-800">
             <th>Vehicle details</th>
             <th>Customer detials</th>
             <th>Status</th>
