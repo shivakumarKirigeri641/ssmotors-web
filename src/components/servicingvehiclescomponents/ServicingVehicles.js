@@ -42,7 +42,7 @@ const ServicingVehicles = () => {
         </button>
       </div>
       {/** section header*/}
-      {!servicingVehicles ? (
+      {!servicingVehicles || 0 === servicingVehicles?.length ? (
         <Skeleton />
       ) : (
         <div>

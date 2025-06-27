@@ -15,7 +15,7 @@ const ServicingVehiclesTableFullScr = () => {
           </thead>
           <tbody>
             {servicingVehicles?.map((x) => (
-              <tr className="border-b border-slate-300 hover:bg-gradient-to-r from-blue-100 to-blue-400 hover:text-black">
+              <tr className="relative group border-b border-slate-300 hover:bg-gradient-to-r from-blue-100 to-blue-400 hover:text-black">
                 <td>
                   <div className="flex justify-start items-center">
                     <img src={require("../../images/icons/bike.svg")}></img>
@@ -39,6 +39,24 @@ const ServicingVehiclesTableFullScr = () => {
                     <img src={require("../../images/icons/edit.svg")}></img>
                   </button>
                 </td>
+                <div className="absolute -top-12 left-0 transform -translate-x-1/2 mt-2 bg-black opacity-0 text-white text-sm p-2 rounded group-hover:opacity-70 transition ">
+                  <div className="w-[100%] p-2 border border-slate-400">
+                    <p>Last service information:</p>
+                    <div className="flex justify-between text-xs p-2">
+                      <p className="">km driven: </p>
+                      <p>{x.previousServiceDetails?.kmDrivenBeforeService}</p>
+                    </div>
+                    <div className="flex justify-between text-xs p-2">
+                      <p>serviced date: </p>
+                      <p className="">
+                        {x.previousServiceDetails?.vehicleServiceTimeIn.slice(
+                          0,
+                          10
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </tr>
             ))}
           </tbody>
