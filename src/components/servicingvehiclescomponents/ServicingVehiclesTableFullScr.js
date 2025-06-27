@@ -6,6 +6,7 @@ const ServicingVehiclesTableFullScr = () => {
       <div className="">
         <table className="w-full">
           <thead className="text-left border-b border-black">
+            <th></th>
             <th>Vehicle number</th>
             <th>Brand/model</th>
             <th>Customer Name</th>
@@ -14,8 +15,9 @@ const ServicingVehiclesTableFullScr = () => {
             <th>Options</th>
           </thead>
           <tbody>
-            {servicingVehicles?.map((x) => (
+            {servicingVehicles?.map((x, index) => (
               <tr className="relative group border-b border-slate-300 hover:bg-gradient-to-r from-blue-100 to-blue-400 hover:text-black">
+                <td>{index + 1}</td>
                 <td>
                   <div className="flex justify-start items-center">
                     <img src={require("../../images/icons/bike.svg")}></img>

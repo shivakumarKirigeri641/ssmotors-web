@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { SERVER } from "../../utils/constants";
 import { addservicingVehicles } from "../../store/slices/servicingVehiclesSlice";
+import { removeservicedVehicles } from "../../store/slices/serviciedVehiclesSlice";
 const ServicingVehicles = () => {
   const dispatch = useDispatch();
   const servicingVehicles = useSelector((store) => store.servicingVehicles);
@@ -20,6 +21,7 @@ const ServicingVehicles = () => {
         );
         console.log(result?.data?.data);
         dispatch(addservicingVehicles(result?.data?.data));
+        dispatch(removeservicedVehicles());
       } catch (err) {
         <Error />;
       }
