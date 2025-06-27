@@ -48,8 +48,8 @@ const ServicedVehiclesTableMobScr = () => {
             <th></th>
             <th>Vehicle details</th>
             <th>Customer detials</th>
-            <th>Status</th>
-            <th>Options</th>
+            <th>Repeat</th>
+            <th>Edit</th>
           </thead>
           <tbody className="border-t border-black">
             {filterservicedVehicles?.map((x, index) => (
