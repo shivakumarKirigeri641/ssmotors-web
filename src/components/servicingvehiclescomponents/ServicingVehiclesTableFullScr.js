@@ -6,6 +6,7 @@ const ServicingVehiclesTableFullScr = () => {
       <div className="">
         <table className="w-full">
           <thead className="text-left border-b border-black">
+            <th></th>
             <th>Vehicle number</th>
             <th>Brand/model</th>
             <th>Customer Name</th>
@@ -14,15 +15,16 @@ const ServicingVehiclesTableFullScr = () => {
             <th>Options</th>
           </thead>
           <tbody>
-            {servicingVehicles?.map((x) => (
-              <tr className="border-b border-slate-300 hover:bg-gradient-to-r from-blue-100 to-blue-400 hover:text-black">
+            {servicingVehicles?.map((x, index) => (
+              <tr className="relative group border-b border-slate-300 hover:bg-gradient-to-r from-blue-100 to-blue-400 hover:text-black">
+                <td>{index + 1}</td>
                 <td>
                   <div className="flex justify-start items-center">
                     <img src={require("../../images/icons/bike.svg")}></img>
-                    <p className="mx-3">{x?.vehicleInfo?.vehicleNumber}</p>
+                    <p className="mx-3">{x?.vehicleNumber}</p>
                   </div>
                 </td>
-                <td>{x?.vehicleInfo?.variantId?.variantName}</td>
+                <td>{x?.vehicleInfo?.variantName}</td>
                 <td>{x?.customerInfo?.customerName}</td>
                 <td>{x?.customerInfo?.primaryMobileNumber}</td>
                 <td>
@@ -38,6 +40,21 @@ const ServicingVehiclesTableFullScr = () => {
                   <button className="text-white p-2 rounded-md">
                     <img src={require("../../images/icons/edit.svg")}></img>
                   </button>
+                </td>
+                <td className="absolute -top-12 left-0 transform -translate-x-1/2 mt-2 bg-black opacity-0 text-white text-sm p-2 rounded group-hover:opacity-70 transition ">
+                  <div className="w-[100%] p-2 border border-slate-400">
+                    <p>Last service information:</p>
+                    <div className="flex justify-between text-xs p-2">
+                      <p className="">km driven: </p>
+                      <p>{x.latestService?.kmDriven}</p>
+                    </div>
+                    <div className="flex justify-between text-xs p-2">
+                      <p>serviced date: </p>
+                      <p className="">
+                        {x.latestService?.dateOfVehicleEntry.slice(0, 10)}
+                      </p>
+                    </div>
+                  </div>
                 </td>
               </tr>
             ))}

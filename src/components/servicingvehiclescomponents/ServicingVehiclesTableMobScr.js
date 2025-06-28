@@ -6,21 +6,21 @@ const ServicingVehiclesTableMobScr = () => {
       <div className="">
         <table className="table-auto">
           <thead className="text-left bg-slate-300 text-gray-800">
+            <th></th>
             <th>Vehicle details</th>
             <th>Customer detials</th>
             <th>Status</th>
             <th>Options</th>
           </thead>
           <tbody className="border-t border-black">
-            {servicingVehicles?.map((x) => (
+            {servicingVehicles?.map((x, index) => (
               <tr className="border-b border-slate-300 hover:bg-gradient-to-r from-blue-100 to-blue-400 hover:text-black">
+                <td className="px-2">{index + 1}</td>
                 <td>
                   <div>
-                    <p className="font-semibold">
-                      {x?.vehicleInfo?.vehicleNumber}
-                    </p>
+                    <p className="font-semibold">{x?.vehicleNumber}</p>
                     <p className="text-xs py-1 italic">
-                      {x?.vehicleInfo?.variantId?.variantName}
+                      {x?.vehicleInfo?.variantName}
                     </p>
                   </div>
                 </td>
