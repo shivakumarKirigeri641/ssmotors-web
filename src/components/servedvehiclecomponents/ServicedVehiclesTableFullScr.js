@@ -6,10 +6,8 @@ const ServicedVehiclesTableFullScr = () => {
   const servicedVehicles = useSelector((store) => store.servicedVehicles);
   let filterservicedVehicles = servicedVehicles.filter(
     (x) =>
-      x?.vehicleInfo?.vehicleNumber
-        .toLowerCase()
-        .includes(searchText.toLowerCase()) ||
-      x?.vehicleInfo?.variantId?.variantName
+      x?.vehicleNumber.toLowerCase().includes(searchText.toLowerCase()) ||
+      x?.vehicleInfo?.variantName
         .toLowerCase()
         .includes(searchText.toLowerCase()) ||
       x?.customerInfo?.customerName
@@ -19,7 +17,7 @@ const ServicedVehiclesTableFullScr = () => {
         .toLowerCase()
         .includes(searchText.toLowerCase())
   );
-  console.log(servicedVehicles);
+  //console.log(servicedVehicles);
   return (
     <div className="text-gray-500 text-sm">
       <div className="relative w-full my-2 flex justify-between items-center">
@@ -62,10 +60,10 @@ const ServicedVehiclesTableFullScr = () => {
                 <td>
                   <div className="flex justify-start items-center">
                     <img src={require("../../images/icons/bike.svg")}></img>
-                    <p className="mx-3">{x?.vehicleInfo?.vehicleNumber}</p>
+                    <p className="mx-3">{x?.vehicleNumber}</p>
                   </div>
                 </td>
-                <td>{x?.vehicleInfo?.variantId?.variantName}</td>
+                <td>{x?.vehicleInfo?.variantName}</td>
                 <td>{x?.customerInfo?.customerName}</td>
                 <td>{x?.customerInfo?.primaryMobileNumber}</td>
                 <td>
@@ -77,6 +75,21 @@ const ServicedVehiclesTableFullScr = () => {
                   <button className="text-white rounded-md">
                     <img src={require("../../images/icons/edit.svg")}></img>
                   </button>
+                </td>
+                <td className="absolute -top-12 left-0 transform -translate-x-1/2 mt-2 bg-black opacity-0 text-white text-sm p-2 rounded group-hover:opacity-70 transition ">
+                  <div className="w-[100%] p-2 border border-slate-400">
+                    <p>Last service information:</p>
+                    <div className="flex justify-between text-xs p-2">
+                      <p className="">km driven: </p>
+                      <p>{x.latestservice?.kmDriven}</p>
+                    </div>
+                    <div className="flex justify-between text-xs p-2">
+                      <p>serviced date: </p>
+                      <p className="">
+                        {x.latestservice?.dateOfVehicleEntry.slice(0, 10)}
+                      </p>
+                    </div>
+                  </div>
                 </td>
               </tr>
             ))}

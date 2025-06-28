@@ -21,10 +21,10 @@ const ServicingVehiclesTableFullScr = () => {
                 <td>
                   <div className="flex justify-start items-center">
                     <img src={require("../../images/icons/bike.svg")}></img>
-                    <p className="mx-3">{x?.vehicleInfo?.vehicleNumber}</p>
+                    <p className="mx-3">{x?.vehicleNumber}</p>
                   </div>
                 </td>
-                <td>{x?.vehicleInfo?.variantId?.variantName}</td>
+                <td>{x?.vehicleInfo?.variantName}</td>
                 <td>{x?.customerInfo?.customerName}</td>
                 <td>{x?.customerInfo?.primaryMobileNumber}</td>
                 <td>
@@ -46,15 +46,12 @@ const ServicingVehiclesTableFullScr = () => {
                     <p>Last service information:</p>
                     <div className="flex justify-between text-xs p-2">
                       <p className="">km driven: </p>
-                      <p>{x.previousServiceDetails?.kmDrivenBeforeService}</p>
+                      <p>{x.latestService?.kmDriven}</p>
                     </div>
                     <div className="flex justify-between text-xs p-2">
                       <p>serviced date: </p>
                       <p className="">
-                        {x.previousServiceDetails?.vehicleServiceTimeIn.slice(
-                          0,
-                          10
-                        )}
+                        {x.latestService?.dateOfVehicleEntry.slice(0, 10)}
                       </p>
                     </div>
                   </div>

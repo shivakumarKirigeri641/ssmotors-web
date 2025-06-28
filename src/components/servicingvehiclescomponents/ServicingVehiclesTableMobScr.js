@@ -18,11 +18,9 @@ const ServicingVehiclesTableMobScr = () => {
                 <td className="px-2">{index + 1}</td>
                 <td>
                   <div>
-                    <p className="font-semibold">
-                      {x?.vehicleInfo?.vehicleNumber}
-                    </p>
+                    <p className="font-semibold">{x?.vehicleNumber}</p>
                     <p className="text-xs py-1 italic">
-                      {x?.vehicleInfo?.variantId?.variantName}
+                      {x?.vehicleInfo?.variantName}
                     </p>
                   </div>
                 </td>
