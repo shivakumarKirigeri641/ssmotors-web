@@ -3,19 +3,37 @@ import { useSelector } from "react-redux";
 const VehicleInformationInput = forwardRef((props, ref) => {
   const vehicleNumberRef = useRef();
   const vehicleVariantRef = useRef();
+  const kmDrivenRef = useRef();
+  const fuelPresentRef = useRef();
+  const vehicleServiceInDateRef = useRef();
+  const vehicleServiceOutDateRef = useRef();
+  const isElectricRef = useRef();
+  const [searchBrandModel, setsearchBrandModel] = useState("");
+  const [isElectric, setisElectric] = useState(false);
+  const [fuelSlider, setfuelSlider] = useState(1);
+  const [searchBrandModelfilter, setsearchBrandModelfilter] = useState("");
+  const [showsuggessions, setshowsuggessions] = useState(false);
+  const allvehicles = useSelector((store) => store.allVehicles);
+  const today = new Date().toISOString().split("T")[0];
+  const [selectedDate, setSelectedDate] = useState(today);
+  const [selectedOutDate, setSelectedOutDate] = useState(today);
+  let filtervehicles = allvehicles?.filter((x) =>
+    x?.toLowerCase().includes(searchBrandModelfilter.toLowerCase())
+  );
+  const handleisElectricChange = (e) => {
+    setisElectric(e.target.checked);
+  };
   useImperativeHandle(ref, () => ({
     vehicleInfo: {
       vehicleNumber: vehicleNumberRef.current.value,
       vehicleVariant: vehicleVariantRef.current.value,
+      kmDriven: kmDrivenRef.current.value,
+      fuelPresent: fuelPresentRef.current.value,
+      isElectric: isElectricRef.current.value,
+      vehicleServiceInDate: vehicleServiceInDateRef.current.value,
+      vehicleServiceOutDate: vehicleServiceOutDateRef.current.value,
     },
   }));
-  const [searchBrandModel, setsearchBrandModel] = useState("");
-  const [searchBrandModelfilter, setsearchBrandModelfilter] = useState("");
-  const [showsuggessions, setshowsuggessions] = useState(false);
-  const allvehicles = useSelector((store) => store.allVehicles);
-  let filtervehicles = allvehicles?.filter((x) =>
-    x?.toLowerCase().includes(searchBrandModelfilter.toLowerCase())
-  );
   return (
     <div className="w-full">
       <div className="p-2 bg-[#d1d8db] rounded-md font-semibold">
@@ -31,6 +49,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             ref={vehicleNumberRef}
+            tabIndex={0}
             type="text"
             placeholder="enter the vehicle number"
           ></input>
@@ -49,6 +68,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
               ref={vehicleVariantRef}
               placeholder="Click here to get brand/model"
               readOnly
+              tabIndex={1}
               type="text"
               onClick={(e) => {
                 setsearchBrandModel("");
@@ -124,32 +144,75 @@ const VehicleInformationInput = forwardRef((props, ref) => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
+            tabIndex={2}
+            ref={kmDrivenRef}
             placeholder="enter the km driven before service"
           ></input>
         </div>
         {/**km driven */}
+        {/**fuel */}
+        <div className="flex justify-between items-center">
+          <label className="w-48 text-nowrap">
+            <span className="text-red-600 px-1 font-bold">*</span>fuel present:
+          </label>
+          <input
+            className="border border-slate-300 w-[60%] m-2 p-2 rounded-md outline-none"
+            type="range"
+            onChange={(e) => setfuelSlider(e.target.value)}
+            tabIndex={3}
+            min={1}
+            max={100}
+            ref={fuelPresentRef}
+            value={fuelSlider}
+            placeholder="enter the km driven before service"
+          ></input>
+          <div>{fuelSlider}%</div>
+        </div>
+        {/**fuel */}
         {/**vehicle service in */}
         <div className="flex justify-between items-center">
+          <span className="text-red-600 px-1 font-bold">*</span>
           <label className="w-48 text-nowrap">Vehicle service in:</label>
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
-            type="text"
+            type="date"
             disabled
-            value={new Date().toLocaleDateString()}
+            tabIndex={4}
+            ref={vehicleServiceInDateRef}
+            value={selectedDate}
           ></input>
         </div>
         {/**vehicle service in */}
         {/**vehicle service out */}
         <div className="flex justify-between items-center">
+          <span className="text-red-600 px-1 font-bold">*</span>
           <label className="w-48 text-nowrap">Vehicle service out:</label>
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
-            type="text"
-            disabled
-            value={new Date().toLocaleDateString()}
+            type="date"
+            tabIndex={5}
+            min={today}
+            ref={vehicleServiceOutDateRef}
+            value={selectedDate}
+            onChange={(e) => setSelectedOutDate(e.target.value)}
           ></input>
         </div>
         {/**vehicle service out */}
+        {/**fuel */}
+        <div className="flex justify-start items-center">
+          <label className="w-48 text-nowrap">
+            <span className="text-red-600 px-1 font-bold">*</span>Is electric?
+          </label>
+          <input
+            className="border border-slate-300 m-2"
+            type="checkbox"
+            ref={isElectricRef}
+            checked={isElectric}
+            onChange={handleisElectricChange}
+            tabIndex={5}
+          ></input>
+        </div>
+        {/**fuel */}
       </div>
     </div>
   );

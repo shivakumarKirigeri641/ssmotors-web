@@ -89,7 +89,7 @@ const CustomerComplaintsInput = ({ customerComplaintsRef }) => {
         </div>
       )}
       {0 === customerComplaints.length && (
-        <div className="p-2 text-red-500 font-semibold text-center">
+        <div className="text-xs md:text-sm  p-2 text-blue-500 font-semibold text-center">
           No customer complaints recorded, Click on '+' to add the customer
           complaints
         </div>

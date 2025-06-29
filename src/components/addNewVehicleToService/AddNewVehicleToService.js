@@ -14,7 +14,7 @@ const AddNewVehicleToService = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleAllocation = () => {
-    console.log(vehicleInfoRef.current.vehicleInfo);
+    console.log(vehicleInfoRef);
   };
   useEffect(() => {
     const fetchbrandmodelvariants = async () => {
@@ -43,23 +43,28 @@ const AddNewVehicleToService = () => {
         <CustomerComplaintsInput
           customerComplaintsRef={customerComplaintsRef}
         />
-        <div className="md:flex justify-end items-center">
-          <button
-            className="bg-[#4F39F6] text-white font-semibold rounded-full px-4 p-2 m-2"
-            onClick={() => {
-              handleAllocation();
-            }}
-          >
-            Allocate to service
-          </button>
-          <button
-            className="bg-[#cb3882] text-white font-semibold rounded-full px-4 p-2 m-2"
-            onClick={() => {
-              navigate("/admin/servicingvehicles");
-            }}
-          >
-            Close
-          </button>
+        <div className="md:flex justify-between items-center">
+          <p className="text-red-600 italic m-2">
+            Note: *indicates mandatory fields to be filled!
+          </p>
+          <div className="md:flex justify-between items-center">
+            <button
+              className="bg-[#4F39F6] text-white font-semibold rounded-full px-4 p-2 md:m-2 w-full md:w-auto"
+              onClick={() => {
+                handleAllocation();
+              }}
+            >
+              Allocate to service
+            </button>
+            <button
+              className="bg-[#cb3882] text-white font-semibold rounded-full px-4 p-2 w-full mt-1 md:m-2 md:w-auto"
+              onClick={() => {
+                navigate("/admin/servicingvehicles");
+              }}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>

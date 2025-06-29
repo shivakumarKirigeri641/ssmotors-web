@@ -41,7 +41,10 @@ const ServicingVehiclesTableFullScr = () => {
                     <img src={require("../../images/icons/edit.svg")}></img>
                   </button>
                 </td>
-                <td className="absolute -top-12 left-0 transform -translate-x-1/2 mt-2 bg-black opacity-0 text-white text-sm p-2 rounded group-hover:opacity-70 transition ">
+                <td
+                  className="absolute -top-12 left-0 transform -translate-x-1/2 mt-2 bg-black opacity-0 text-white text-sm p-2
+                rounded group-hover:opacity-70 transition "
+                >
                   <div className="w-[100%] p-2 border border-slate-400">
                     <p>Last service information:</p>
                     <div className="flex justify-between text-xs p-2">
