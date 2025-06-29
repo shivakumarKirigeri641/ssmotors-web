@@ -11,6 +11,17 @@ const CustomerComplaintsInput = () => {
     setFormData(data); // receive data from modal
     setShowModal(false);
     console.log("Received from modal:", data);
+    const newItem = {
+      title: data.title,
+      description: data.description,
+    };
+    setcustomerComplaints((prev) => [...prev, newItem]);
+  };
+  // Remove item by index
+  const removeItem = (indexToRemove) => {
+    setcustomerComplaints((prevItems) =>
+      prevItems.filter((_, index) => index !== indexToRemove)
+    );
   };
   return (
     <div className="border border-slate-300 m-2 p-2 rounded-md">
@@ -22,11 +33,16 @@ const CustomerComplaintsInput = () => {
             onClick={() => setShowModal(true)}
           ></img>
         </button>
-        {formData &&
-          setcustomerComplaints({
-            title: formData.title,
-            description: formData.description,
-          })}
+        {formData && (
+          <div className="hidden mt-4">
+            <p>
+              <strong>Title:</strong> {formData.title}
+            </p>
+            <p>
+              <strong>Description:</strong> {formData.description}
+            </p>
+          </div>
+        )}
         {showModal && (
           <ModalDialog
             onClose={() => setShowModal(false)}
@@ -60,7 +76,13 @@ const CustomerComplaintsInput = () => {
                 <button>Edit</button>
               </li>
               <li className="w-[10%]">
-                <button>Delete</button>
+                <button
+                  onClick={() => {
+                    removeItem(index);
+                  }}
+                >
+                  Delete
+                </button>
               </li>
             </div>
           ))}
