@@ -31,7 +31,7 @@ const CustomerComplaintsInput = ({ customerComplaintsRef }) => {
     );
   };
   return (
-    <div className="border border-slate-300 m-2 p-2 rounded-md">
+    <div className="m-2 p-2 rounded-md">
       <div className="p-2 bg-[#d1d8db] rounded-md font-semibold text-center flex justify-between">
         <p>Customer complaints</p>
         <button>

@@ -39,10 +39,10 @@ const AddNewVehicleToService = () => {
         Add new vehicle to the service
       </div>
       <div className="md:flex justify-between items-start m-2 p-2">
-        <div className="w-full m-2 border border-slate-300 rounded-md p-2">
+        <div className="w-full m-2 p-2">
           <VehicleInformationInput vehicleInfoRef={vehicleInfoRef} />
         </div>
-        <div className="w-full m-2 border border-slate-300 rounded-md p-2">
+        <div className="w-full m-2 p-2">
           <CustomerInformationInput customerInfoRef={customerInfoRef} />
         </div>
       </div>
