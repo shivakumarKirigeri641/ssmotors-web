@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addallVehicles } from "../../store/slices/allVehiclesSlice";
 const AddNewVehicleToService = () => {
   const [searchBrandModel, setsearchBrandModel] = useState("");
+  const [searchBrandModelfilter, setsearchBrandModelfilter] = useState("");
   const [showsuggessions, setshowsuggessions] = useState(false);
   const dispatch = useDispatch();
   const allvehicles = useSelector((store) => store.allVehicles);
   let filtervehicles = allvehicles?.filter((x) =>
-    x?.toLowerCase().includes(searchBrandModel.toLowerCase())
+    x?.toLowerCase().includes(searchBrandModelfilter.toLowerCase())
   );
   console.log(filtervehicles);
   useEffect(() => {
@@ -23,7 +24,7 @@ const AddNewVehicleToService = () => {
     fetchbrandmodelvariants();
   }, []);
   return (
-    <div className="h-screen border border-slate-400 md:mx-auto w-full md:w-[70%]">
+    <div className="relative h-screen border border-slate-50 md:mx-auto w-full md:w-[70%]">
       <div className="flex justify-between items-center m-2 p-2">
         <div className="w-full">
           <div className="p-2 bg-[#d1d8db] rounded-md font-semibold">
@@ -58,13 +59,32 @@ const AddNewVehicleToService = () => {
                   type="text"
                   onClick={(e) => {
                     setsearchBrandModel("");
-                    setshowsuggessions(true);
+                    setshowsuggessions(!showsuggessions);
                   }}
                 ></input>
                 {showsuggessions && (
-                  <div className="absolute left-[2%] w-full h-40 overflow-auto p-2 bg-yellow-50 border border-slate-300 rounded-md">
-                    <input type></input>
-                    <ul>
+                  <div className="absolute left-[2%] w-full p-2 bg-yellow-50 border border-slate-300 rounded-md">
+                    <div className="flex justify-between items-center">
+                      <input
+                        className="w-full p-2 rounded-md border border-slate-200"
+                        type="text"
+                        value={searchBrandModelfilter}
+                        placeholder="Search your vehicle here"
+                        onChange={(e) =>
+                          setsearchBrandModelfilter(e.target.value)
+                        }
+                      ></input>
+                      <div
+                        className="flex cursor-pointer"
+                        onClick={() => setsearchBrandModelfilter("")}
+                      >
+                        <img
+                          className="mx-2"
+                          src={require("../../images/icons/cleartext.svg")}
+                        ></img>
+                      </div>
+                    </div>
+                    <ul className="text-sm h-40 overflow-auto ">
                       {filtervehicles?.map((x) => (
                         <li
                           className="p-2 cursor-pointer hover:italic hover:underline underline-offset-4"
@@ -73,7 +93,13 @@ const AddNewVehicleToService = () => {
                             setshowsuggessions(false);
                           }}
                         >
-                          {x}
+                          <div className="flex">
+                            <img
+                              className="mx-2"
+                              src={require("../../images/icons/bike.svg")}
+                            ></img>
+                            {x}
+                          </div>
                         </li>
                       ))}
                     </ul>
