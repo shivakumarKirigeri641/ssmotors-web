@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import validateVehicleNumber from "../../utils/validateVehicleNumber";
 const VehicleInformationInput = forwardRef((props, ref) => {
   const vehicleNumberRef = useRef();
   const vehicleVariantRef = useRef();
@@ -10,6 +11,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
   const isElectricRef = useRef();
   const [searchBrandModel, setsearchBrandModel] = useState("");
   const [isElectric, setisElectric] = useState(false);
+  const [isvalidVehicleNumber, setisvalidVehicleNumber] = useState(false);
   const [fuelSlider, setfuelSlider] = useState(1);
   const [searchBrandModelfilter, setsearchBrandModelfilter] = useState("");
   const [showsuggessions, setshowsuggessions] = useState(false);
@@ -41,7 +43,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
       </div>
       <div>
         {/**vehicle no */}
-        <div className="flex justify-between items-center">
+        <div className="relative flex justify-between items-center">
           <label className="w-48  text-nowrap">
             <span className="text-red-600 px-1 font-bold">*</span>Vehicle
             number:
@@ -52,11 +54,28 @@ const VehicleInformationInput = forwardRef((props, ref) => {
             tabIndex={0}
             type="text"
             placeholder="enter the vehicle number"
+            onChange={(e) => {
+              setisvalidVehicleNumber(
+                validateVehicleNumber(
+                  vehicleNumberRef.current.value.toUpperCase()
+                )
+              );
+            }}
           ></input>
+          {!isvalidVehicleNumber && "" !== vehicleNumberRef.current.value && (
+            <div className="absolute left-[35%] mt-1 -bottom-2 text-red-500 font-semibold italic">
+              Invalid vehicle number!
+            </div>
+          )}
+          {isvalidVehicleNumber && (
+            <div className="absolute left-[35%] mt-1 -bottom-2 text-green-500 font-semibold italic">
+              Vehicle number valid.
+            </div>
+          )}
         </div>
         {/**vehicle no */}
         {/**vehicle name */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mt-3">
           <label className="w-48 text-nowrap">
             <span className="text-red-600 px-1 font-bold">*</span>
             Brand/Model
@@ -65,6 +84,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
             <input
               className="border border-slate-300 w-[96%] p-2 mx-2 rounded-md outline-none cursor-pointer"
               value={searchBrandModel}
+              required
               ref={vehicleVariantRef}
               placeholder="Click here to get brand/model"
               readOnly
@@ -93,6 +113,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
                   <input
                     className="w-full p-2 rounded-md border border-slate-200"
                     type="text"
+                    required
                     value={searchBrandModelfilter}
                     placeholder="Search your vehicle here"
                     onChange={(e) => setsearchBrandModelfilter(e.target.value)}
@@ -144,6 +165,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
+            required
             tabIndex={2}
             ref={kmDrivenRef}
             placeholder="enter the km driven before service"
@@ -161,6 +183,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
             onChange={(e) => setfuelSlider(e.target.value)}
             tabIndex={3}
             min={1}
+            required
             max={100}
             ref={fuelPresentRef}
             value={fuelSlider}
@@ -178,6 +201,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
             type="date"
             disabled
             tabIndex={4}
+            required
             ref={vehicleServiceInDateRef}
             value={selectedDate}
           ></input>
@@ -192,6 +216,7 @@ const VehicleInformationInput = forwardRef((props, ref) => {
             type="date"
             tabIndex={5}
             min={today}
+            required
             ref={vehicleServiceOutDateRef}
             value={selectedDate}
             onChange={(e) => setSelectedOutDate(e.target.value)}

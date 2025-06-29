@@ -14,7 +14,7 @@ const AddNewVehicleToService = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleAllocation = () => {
-    console.log(vehicleInfoRef);
+    console.log(vehicleInfoRef.current.vehicleInfo);
   };
   useEffect(() => {
     const fetchbrandmodelvariants = async () => {
