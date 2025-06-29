@@ -1,25 +1,34 @@
-import { useEffect, useRef, useRef } from "react";
+import { useEffect, useRef, useRef, useState } from "react";
 import { SERVER } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addallVehicles } from "../../store/slices/allVehiclesSlice";
 import VehicleInformationInput from "./VehicleInformationInput";
 import CustomerInformationInput from "./CustomerInformationInput";
+import validateNewVehicleMandatoryFields from "../../utils/validateNewVehicleMandatoryFields";
 import CustomerComplaintsInput from "./CustomerComplaintsInput";
 import axios from "axios";
 import { useNavigate } from "react-router";
 const AddNewVehicleToService = () => {
+  const [showError, setShowError] = useState(false);
+  const [errMsg, seterrMsg] = useState("");
   const vehicleInfoRef = useRef();
   const customerInfoRef = useRef();
   const customerComplaintsRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleAllocation = () => {
-    const result = {
-      vehicleInfo: vehicleInfoRef.current.vehicleInfo,
-      customerInfo: customerInfoRef.current.customerInfo,
-      customerComplaintsInfo: customerComplaintsRef.current.complaints,
-    };
-    console.log(result);
+    try {
+      const result = {
+        vehicleInfo: vehicleInfoRef.current.vehicleInfo,
+        customerInfo: customerInfoRef.current.customerInfo,
+        customerComplaintsInfo: customerComplaintsRef.current.complaints,
+      };
+      if (!validateNewVehicleMandatoryFields(result)) {
+        throw new Error("Required fields has to be filled!");
+      }
+    } catch (err) {
+      showErrorMsg(err.message);
+    }
   };
   useEffect(() => {
     const fetchbrandmodelvariants = async () => {
@@ -31,6 +40,13 @@ const AddNewVehicleToService = () => {
     };
     fetchbrandmodelvariants();
   }, []);
+  const showErrorMsg = (msg) => {
+    seterrMsg(msg);
+    setShowError(true);
+    setTimeout(() => {
+      setShowError(false);
+    }, 1000); // 1 second
+  };
   return (
     <div className="relative text-sm h-screen md:mx-auto w-full md:w-[70%]">
       <div className="p-2 m-2 text-left text-xl italic font-bold text-blue-800">
@@ -70,6 +86,11 @@ const AddNewVehicleToService = () => {
           </div>
         </div>
       </div>
+      {showError && (
+        <div className="fixed left-10 bottom-5 bg-red-500 text-white px-4 py-2 rounded shadow-lg animate-fadeInOut">
+          {errMsg}
+        </div>
+      )}
     </div>
   );
 };
