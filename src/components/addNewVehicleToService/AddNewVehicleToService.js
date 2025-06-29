@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SERVER } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addallVehicles } from "../../store/slices/allVehiclesSlice";
@@ -8,8 +8,21 @@ import CustomerComplaintsInput from "./CustomerComplaintsInput";
 import axios from "axios";
 import { useNavigate } from "react-router";
 const AddNewVehicleToService = () => {
+  const vehicleInfoRef = useRef();
+  const customerInfoRef = useRef();
+  const customerComplaintsRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const handleAllocation = () => {
+    const vehicleInformationObtained = vehicleInfoRef.current;
+    const customerInformationObtained = customerComplaintsRef.current.value;
+    const customerComplaintsObtained = customerComplaintsRef.current.value;
+    console.log(
+      vehicleInformationObtained,
+      customerInformationObtained,
+      customerComplaintsObtained
+    );
+  };
   useEffect(() => {
     const fetchbrandmodelvariants = async () => {
       const result = await axios.get(SERVER + "/allvehicles", {
@@ -27,16 +40,23 @@ const AddNewVehicleToService = () => {
       </div>
       <div className="md:flex justify-between items-start m-2 p-2">
         <div className="w-full m-2 border border-slate-300 rounded-md p-2">
-          <VehicleInformationInput />
+          <VehicleInformationInput vehicleInfoRef={vehicleInfoRef} />
         </div>
         <div className="w-full m-2 border border-slate-300 rounded-md p-2">
-          <CustomerInformationInput />
+          <CustomerInformationInput customerInfoRef={customerInfoRef} />
         </div>
       </div>
       <div className="m-2 p-2">
-        <CustomerComplaintsInput />
+        <CustomerComplaintsInput
+          customerComplaintsRef={customerComplaintsRef}
+        />
         <div className="md:flex justify-end items-center">
-          <button className="bg-[#4F39F6] text-white font-semibold rounded-full px-4 p-2 m-2">
+          <button
+            className="bg-[#4F39F6] text-white font-semibold rounded-full px-4 p-2 m-2"
+            onClick={() => {
+              handleAllocation();
+            }}
+          >
             Allocate to service
           </button>
           <button

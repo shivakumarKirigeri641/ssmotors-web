@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-const VehicleInformationInput = () => {
+const VehicleInformationInput = ({ vehicleInfoRef }) => {
   const [searchBrandModel, setsearchBrandModel] = useState("");
   const [searchBrandModelfilter, setsearchBrandModelfilter] = useState("");
   const [showsuggessions, setshowsuggessions] = useState(false);
@@ -22,6 +22,7 @@ const VehicleInformationInput = () => {
           </label>
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
+            ref={vehicleInfoRef}
             type="text"
             placeholder="enter the vehicle number"
           ></input>
@@ -37,6 +38,7 @@ const VehicleInformationInput = () => {
             <input
               className="border border-slate-300 w-[96%] p-2 mx-2 rounded-md outline-none cursor-pointer"
               value={searchBrandModel}
+              ref={vehicleInfoRef}
               placeholder="Click here to get brand/model"
               readOnly
               type="text"
@@ -114,6 +116,7 @@ const VehicleInformationInput = () => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
+            ref={vehicleInfoRef}
             placeholder="enter the km driven before service"
           ></input>
         </div>
@@ -124,6 +127,7 @@ const VehicleInformationInput = () => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
+            ref={vehicleInfoRef}
             disabled
             value={new Date().toLocaleDateString()}
           ></input>
@@ -135,6 +139,7 @@ const VehicleInformationInput = () => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
+            ref={vehicleInfoRef}
             disabled
             value={new Date().toLocaleDateString()}
           ></input>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-const CustomerInformationInput = () => {
+const CustomerInformationInput = ({ customerInfoRef }) => {
   const [searchBrandModel, setsearchBrandModel] = useState("");
   const [searchBrandModelfilter, setsearchBrandModelfilter] = useState("");
   const [showsuggessions, setshowsuggessions] = useState(false);
@@ -22,6 +22,7 @@ const CustomerInformationInput = () => {
           </label>
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
+            ref={customerInfoRef}
             type="text"
             placeholder="enter the customer name"
           ></input>
@@ -36,6 +37,7 @@ const CustomerInformationInput = () => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
+            ref={customerInfoRef}
             placeholder="enter the mobile number"
           ></input>
         </div>
@@ -46,6 +48,7 @@ const CustomerInformationInput = () => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
+            ref={customerInfoRef}
             placeholder="enter the email address"
           ></input>
         </div>
@@ -56,6 +59,7 @@ const CustomerInformationInput = () => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
+            ref={customerInfoRef}
             placeholder="enter the residential address"
           ></input>
         </div>

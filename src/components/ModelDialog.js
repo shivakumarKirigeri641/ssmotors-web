@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function ModalDialog({ onClose, onSave }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  // 🔑 Handle ESC key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
 
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [onClose]);
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave({ title, description }); // pass data to parent
@@ -18,9 +28,11 @@ export default function ModalDialog({ onClose, onSave }) {
             <label className="block mb-1 text-sm font-medium">Title</label>
             <input
               type="text"
+              autoFocus
               value={title}
+              placeholder="Enter the complaint title here"
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full border px-3 py-2 rounded outline-none font-normal"
               required
             />
           </div>
@@ -30,8 +42,9 @@ export default function ModalDialog({ onClose, onSave }) {
             </label>
             <textarea
               value={description}
+              placeholder="Enter the complaint description"
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full border px-3 py-2 rounded font-normal outline-none"
               rows="3"
               required
             />
