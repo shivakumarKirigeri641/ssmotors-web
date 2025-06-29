@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useRef } from "react";
 import { SERVER } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addallVehicles } from "../../store/slices/allVehiclesSlice";
@@ -14,14 +14,7 @@ const AddNewVehicleToService = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleAllocation = () => {
-    const vehicleInformationObtained = vehicleInfoRef.current;
-    const customerInformationObtained = customerComplaintsRef.current.value;
-    const customerComplaintsObtained = customerComplaintsRef.current.value;
-    console.log(
-      vehicleInformationObtained,
-      customerInformationObtained,
-      customerComplaintsObtained
-    );
+    console.log(vehicleInfoRef.current.vehicleInfo);
   };
   useEffect(() => {
     const fetchbrandmodelvariants = async () => {
@@ -40,7 +33,7 @@ const AddNewVehicleToService = () => {
       </div>
       <div className="md:flex justify-between items-start m-2 p-2">
         <div className="w-full m-2 p-2">
-          <VehicleInformationInput vehicleInfoRef={vehicleInfoRef} />
+          <VehicleInformationInput ref={vehicleInfoRef} />
         </div>
         <div className="w-full m-2 p-2">
           <CustomerInformationInput customerInfoRef={customerInfoRef} />

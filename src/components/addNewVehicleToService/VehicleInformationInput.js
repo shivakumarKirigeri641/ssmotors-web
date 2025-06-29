@@ -1,6 +1,14 @@
-import { useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-const VehicleInformationInput = ({ vehicleInfoRef }) => {
+const VehicleInformationInput = forwardRef((props, ref) => {
+  const vehicleNumberRef = useRef();
+  const vehicleVariantRef = useRef();
+  useImperativeHandle(ref, () => ({
+    vehicleInfo: {
+      vehicleNumber: vehicleNumberRef.current.value,
+      vehicleVariant: vehicleVariantRef.current.value,
+    },
+  }));
   const [searchBrandModel, setsearchBrandModel] = useState("");
   const [searchBrandModelfilter, setsearchBrandModelfilter] = useState("");
   const [showsuggessions, setshowsuggessions] = useState(false);
@@ -22,7 +30,7 @@ const VehicleInformationInput = ({ vehicleInfoRef }) => {
           </label>
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
-            ref={vehicleInfoRef}
+            ref={vehicleNumberRef}
             type="text"
             placeholder="enter the vehicle number"
           ></input>
@@ -38,7 +46,7 @@ const VehicleInformationInput = ({ vehicleInfoRef }) => {
             <input
               className="border border-slate-300 w-[96%] p-2 mx-2 rounded-md outline-none cursor-pointer"
               value={searchBrandModel}
-              ref={vehicleInfoRef}
+              ref={vehicleVariantRef}
               placeholder="Click here to get brand/model"
               readOnly
               type="text"
@@ -116,7 +124,6 @@ const VehicleInformationInput = ({ vehicleInfoRef }) => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
-            ref={vehicleInfoRef}
             placeholder="enter the km driven before service"
           ></input>
         </div>
@@ -127,7 +134,6 @@ const VehicleInformationInput = ({ vehicleInfoRef }) => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
-            ref={vehicleInfoRef}
             disabled
             value={new Date().toLocaleDateString()}
           ></input>
@@ -139,7 +145,6 @@ const VehicleInformationInput = ({ vehicleInfoRef }) => {
           <input
             className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
             type="text"
-            ref={vehicleInfoRef}
             disabled
             value={new Date().toLocaleDateString()}
           ></input>
@@ -148,6 +153,6 @@ const VehicleInformationInput = ({ vehicleInfoRef }) => {
       </div>
     </div>
   );
-};
+});
 
 export default VehicleInformationInput;
