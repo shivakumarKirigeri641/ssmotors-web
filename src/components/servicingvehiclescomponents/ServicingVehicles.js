@@ -9,7 +9,9 @@ import axios from "axios";
 import { SERVER } from "../../utils/constants";
 import { addservicingVehicles } from "../../store/slices/servicingVehiclesSlice";
 import { removeservicedVehicles } from "../../store/slices/serviciedVehiclesSlice";
+import { useNavigate } from "react-router";
 const ServicingVehicles = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const servicingVehicles = useSelector((store) => store.servicingVehicles);
   useEffect(() => {
@@ -39,7 +41,12 @@ const ServicingVehicles = () => {
             servicing' vehicles
           </p>
         </div>
-        <button className="bg-[#4F39F6] p-2 rounded-lg text-white">
+        <button
+          className="bg-[#4F39F6] p-2 rounded-lg text-white"
+          onClick={() => {
+            navigate("/addnewvehicletoservice");
+          }}
+        >
           Add new vehicle to service
         </button>
       </div>
