@@ -14,7 +14,12 @@ const AddNewVehicleToService = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleAllocation = () => {
-    console.log(vehicleInfoRef.current.vehicleInfo);
+    const result = {
+      vehicleInfo: vehicleInfoRef.current.vehicleInfo,
+      customerInfo: customerInfoRef.current.customerInfo,
+      customerComplaintsInfo: customerComplaintsRef.current.complaints,
+    };
+    console.log(result);
   };
   useEffect(() => {
     const fetchbrandmodelvariants = async () => {
@@ -36,13 +41,11 @@ const AddNewVehicleToService = () => {
           <VehicleInformationInput ref={vehicleInfoRef} />
         </div>
         <div className="w-full m-2 p-2">
-          <CustomerInformationInput customerInfoRef={customerInfoRef} />
+          <CustomerInformationInput ref={customerInfoRef} />
         </div>
       </div>
       <div className="m-2 p-2">
-        <CustomerComplaintsInput
-          customerComplaintsRef={customerComplaintsRef}
-        />
+        <CustomerComplaintsInput ref={customerComplaintsRef} />
         <div className="md:flex justify-between items-center">
           <p className="text-red-600 italic m-2">
             Note: *indicates mandatory fields to be filled!

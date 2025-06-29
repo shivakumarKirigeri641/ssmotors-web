@@ -49,7 +49,11 @@ const VehicleInformationInput = forwardRef((props, ref) => {
             number:
           </label>
           <input
-            className="border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
+            className={
+              isvalidVehicleNumber
+                ? "border border-slate-300 w-[70%] m-2 p-2 rounded-md outline-none"
+                : "border w-[70%] m-2 p-2 rounded-md outline-none border-red-500"
+            }
             ref={vehicleNumberRef}
             tabIndex={0}
             type="text"
@@ -72,7 +76,11 @@ const VehicleInformationInput = forwardRef((props, ref) => {
           </label>
           <div className="relative w-[75%]">
             <input
-              className="border border-slate-300 w-[96%] p-2 mx-2 rounded-md outline-none cursor-pointer"
+              className={
+                "" !== searchBrandModel
+                  ? "border border-slate-300 w-[96%] p-2 mx-2 rounded-md outline-none cursor-pointer"
+                  : "border w-[96%] p-2 mx-2 rounded-md outline-none cursor-pointer border-red-500"
+              }
               value={searchBrandModel}
               required
               ref={vehicleVariantRef}

@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import ModalDialog from "../ModelDialog";
-const CustomerComplaintsInput = ({ customerComplaintsRef }) => {
+const CustomerComplaintsInput = forwardRef((props, ref) => {
   const [customerComplaints, setcustomerComplaints] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState(null);
   const [errorMsg, seterrMsg] = useState("");
+  const customerComplaintsRef = useRef();
+  useImperativeHandle(ref, () => ({
+    complaints: customerComplaints,
+  }));
   const handleSave = (data) => {
     try {
       /*const result = customerComplaints.filter(
@@ -104,6 +109,6 @@ const CustomerComplaintsInput = ({ customerComplaintsRef }) => {
       )}
     </div>
   );
-};
+});
 
 export default CustomerComplaintsInput;
