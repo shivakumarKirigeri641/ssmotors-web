@@ -62,16 +62,6 @@ const VehicleInformationInput = forwardRef((props, ref) => {
               );
             }}
           ></input>
-          {!isvalidVehicleNumber && "" !== vehicleNumberRef.current.value && (
-            <div className="absolute left-[35%] mt-1 -bottom-2 text-red-500 font-semibold italic">
-              Invalid vehicle number!
-            </div>
-          )}
-          {isvalidVehicleNumber && (
-            <div className="absolute left-[35%] mt-1 -bottom-2 text-green-500 font-semibold italic">
-              Vehicle number valid.
-            </div>
-          )}
         </div>
         {/**vehicle no */}
         {/**vehicle name */}
