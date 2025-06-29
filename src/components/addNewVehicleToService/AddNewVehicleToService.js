@@ -16,7 +16,7 @@ const AddNewVehicleToService = () => {
   const customerComplaintsRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleAllocation = () => {
+  const handleAllocation = async () => {
     try {
       const result = {
         vehicleInfo: vehicleInfoRef.current.vehicleInfo,
@@ -26,6 +26,12 @@ const AddNewVehicleToService = () => {
       if (!validateNewVehicleMandatoryFields(result)) {
         throw new Error("Required fields has to be filled!");
       }
+      const resultresponse = await axios.post(
+        SERVER + "/admin/insert/addnewvehicletoservice",
+        { result },
+        { withCredentials: true }
+      );
+      console.log(resultresponse?.data?.jsonobject);
     } catch (err) {
       showErrorMsg(err.message);
     }
@@ -87,7 +93,7 @@ const AddNewVehicleToService = () => {
         </div>
       </div>
       {showError && (
-        <div className="fixed left-10 bottom-5 bg-red-500 text-white px-4 py-2 rounded shadow-lg animate-fadeInOut">
+        <div className="fixed left-10 bottom-20 md:bottom-5 bg-red-500 text-white px-4 py-2 rounded shadow-lg animate-fadeInOut">
           {errMsg}
         </div>
       )}
