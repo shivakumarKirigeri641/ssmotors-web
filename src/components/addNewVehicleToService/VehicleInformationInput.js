@@ -33,7 +33,7 @@ const VehicleInformationInput = () => {
             <span className="text-red-600 px-1 font-bold">*</span>
             Brand/Model
           </label>
-          <div className="relative w-[70%]">
+          <div className="relative w-[75%]">
             <input
               className="border border-slate-300 w-[96%] p-2 mx-2 rounded-md outline-none cursor-pointer"
               value={searchBrandModel}
