@@ -8,7 +8,6 @@ import {
 const VehicleNumber = () => {
   const dispatch = useDispatch();
   const vehno = useSelector((store) => store.newVehicleDetails?.vehiclenumber);
-  console.log(vehno);
   const [errorMsgStatus, seterrorMsgStatus] = useState(false);
   const [showErrorMsg, setshowErrorMsg] = useState("");
   const [vehiclenumberinp, setvehiclenumberinp] = useState("");

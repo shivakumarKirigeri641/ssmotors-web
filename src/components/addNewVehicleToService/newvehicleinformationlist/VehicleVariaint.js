@@ -9,6 +9,7 @@ const VehicleVariaint = () => {
   const variant = useSelector(
     (store) => store.newVehicleDetails?.vehicleVariant
   );
+  console.log(variant);
   const dispatch = useDispatch();
   const [errorMsgStatus, seterrorMsgStatus] = useState(false);
   const [canShowSuggesssions, setcanShowSuggesssions] = useState(false);
