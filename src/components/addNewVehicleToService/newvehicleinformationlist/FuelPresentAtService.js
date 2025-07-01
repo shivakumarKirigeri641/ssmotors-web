@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 const FuelPresentAtService = () => {
   const dispatch = useDispatch();
   const vehno = useSelector((store) => store.newVehicleDetails?.fuelPresent);
-  console.log("fuel:", vehno);
   return (
     <div className="w-full p-2 pb-3 text-gray-700">
       <p>Fuel present</p>

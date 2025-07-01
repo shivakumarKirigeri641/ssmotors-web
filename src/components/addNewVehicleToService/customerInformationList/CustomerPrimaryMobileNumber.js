@@ -13,7 +13,6 @@ const CustomerPrimaryMobileNumber = () => {
   const [errorMsgStatus, seterrorMsgStatus] = useState(false);
   const [CustomerPrimaryMobileNumberinp, setCustomerPrimaryMobileNumberinp] =
     useState("");
-  console.log("ph:", phno);
   const [showErrorMsg, setshowErrorMsg] = useState("");
   return (
     <div className="w-full p-2 pb-3 text-gray-700">

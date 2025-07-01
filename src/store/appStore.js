@@ -6,11 +6,13 @@ import allVehiclesReducer from "./slices/allVehiclesSlice";
 import vehicleNumbersReducer from "./slices/vehicleNumbersSlice";
 import newVehicleDetailsReducer from "./slices/newVehicleDetailsSlice";
 import customerDetailsReducer from "./slices/customerDetailsSlice";
+import customercomplaintsReducer from "./slices/customerComplaintsSlice";
 const appStore = configureStore({
   reducer: {
     admin: adminReducer,
     servicingVehicles: servicingVehiclesReducer,
     servicedVehicles: servicedVehiclesReducer,
+    customercomplaints: customercomplaintsReducer,
     allVehicles: allVehiclesReducer,
     newVehicleDetails: newVehicleDetailsReducer,
     customerDetails: customerDetailsReducer,

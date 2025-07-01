@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addallVehicles } from "../../store/slices/allVehiclesSlice";
 import VehicleInformationList from "./newvehicleinformationlist/VehicleInformationList";
 import validateNewVehicleMandatoryFields from "../../utils/validateNewVehicleMandatoryFields";
+import CustomerComplaintsInput from "./CustomerComplaintsInput";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Await } from "react-router";
@@ -28,7 +29,9 @@ const AddNewVehicleToService = () => {
         <VehicleInformationList />
         <CustomerInformationList />
       </div>
-      <div className="m-2 p-2"></div>
+      <div className="m-2 p-2">
+        <CustomerComplaintsInput />
+      </div>
     </div>
   );
 };

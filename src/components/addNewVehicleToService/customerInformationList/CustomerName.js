@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 const CustomerName = () => {
   const dispatch = useDispatch();
   const custname = useSelector((store) => store.customerDetails?.customername);
-  console.log("custname:", custname);
+
   const [errorMsgStatus, seterrorMsgStatus] = useState(false);
   const [customernameinp, setcustomernameinp] = useState("");
   const [showErrorMsg, setshowErrorMsg] = useState("");
