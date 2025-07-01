@@ -8,7 +8,7 @@ import {
 const VehicleNumber = () => {
   const dispatch = useDispatch();
   const vehno = useSelector((store) => store.newVehicleDetails?.vehiclenumber);
-
+  console.log(vehno);
   const [errorMsgStatus, seterrorMsgStatus] = useState(false);
   const [showErrorMsg, setshowErrorMsg] = useState("");
   const [vehiclenumberinp, setvehiclenumberinp] = useState("");
@@ -45,7 +45,10 @@ const VehicleNumber = () => {
               seterrorMsgStatus(true);
               setshowErrorMsg("Vehicle number already served.!");
             }
-            if (!checkVehicleForExistence(e.target.value.toUpperCase())) {
+            if (
+              !checkVehicleForExistence(e.target.value.toUpperCase()) &&
+              validateVehicleNumber(e.target.value.toUpperCase())
+            ) {
               dispatch(addNewVehicleDetails_vehicleNumber(e.target.value));
             }
           }}
