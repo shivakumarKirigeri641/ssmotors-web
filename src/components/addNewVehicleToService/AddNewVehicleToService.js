@@ -7,6 +7,7 @@ import validateNewVehicleMandatoryFields from "../../utils/validateNewVehicleMan
 import CustomerComplaintsInput from "./CustomerComplaintsInput";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import AllocateVehicleAndClose from "./AllocateVehicleAndClose";
 import { Await } from "react-router";
 import CustomerInformationList from "./customerInformationList/CustomerInformationList";
 const AddNewVehicleToService = () => {
@@ -20,6 +21,7 @@ const AddNewVehicleToService = () => {
     };
     fetchbrandmodelvariants();
   }, []);
+
   return (
     <div className="relative text-sm h-screen md:mx-auto w-full md:w-[70%]">
       <div className="p-2 m-2 text-left text-xl italic font-bold text-blue-800">
@@ -31,6 +33,7 @@ const AddNewVehicleToService = () => {
       </div>
       <div className="m-2 p-2">
         <CustomerComplaintsInput />
+        <AllocateVehicleAndClose />
       </div>
     </div>
   );
