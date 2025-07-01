@@ -20,7 +20,6 @@ const Login = () => {
       dispatch(addAdmin(result?.data?.data));
       navigate("/admin/dashboard");
     } catch (err) {
-      console.log(err.message);
       const popup = document.getElementById("errorPopup");
       popup.classList.remove("opacity-0");
       popup.classList.add("opacity-100");

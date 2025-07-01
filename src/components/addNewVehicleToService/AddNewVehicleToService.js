@@ -2,6 +2,7 @@ import { useEffect, useRef, useRef, useState } from "react";
 import { SERVER } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addallVehicles } from "../../store/slices/allVehiclesSlice";
+import VehicleInformationList from "./newvehicleinformationlist/VehicleInformationList";
 import validateNewVehicleMandatoryFields from "../../utils/validateNewVehicleMandatoryFields";
 import axios from "axios";
 import { useNavigate } from "react-router";
@@ -14,7 +15,6 @@ const AddNewVehicleToService = () => {
         withCredentials: true,
       });
       dispatch(addallVehicles(result?.data?.data));
-      console.log(result?.data?.data);
     };
     fetchbrandmodelvariants();
   }, []);
@@ -24,8 +24,10 @@ const AddNewVehicleToService = () => {
         Add new vehicle to the service
       </div>
       <div className="md:flex justify-between items-start m-2 p-2">
-        <div className="w-full m-2 p-2">vehicle info</div>
-        <div className="w-full m-2 p-2">customer info</div>
+        <VehicleInformationList />
+        <div className="w-full md:w-[50%] m-2 p-2 border border-slate-300">
+          customer info
+        </div>
       </div>
       <div className="m-2 p-2"></div>
     </div>
