@@ -2,7 +2,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const vehicleNumbersSlice = createSlice({
   name: "vehicleNumbers",
-  initialState: null,
+  initialState: [],
   reducers: {
     addvehicleNumbers: (state, action) => {
       return action.payload;

@@ -14,7 +14,7 @@ const VehicleNumber = () => {
   const vehiclenumbers = useSelector((store) => store.vehicleNumbers);
   const checkVehicleForExistence = (input) => {
     if (vehiclenumbers && 0 < vehiclenumbers?.length) {
-      return vehiclenumbers.includes(input);
+      return vehiclenumbers?.includes(input);
     } else return false;
   };
   return (
@@ -37,10 +37,7 @@ const VehicleNumber = () => {
             if (!validateVehicleNumber(e.target.value.toUpperCase())) {
               seterrorMsgStatus(true);
               setshowErrorMsg("Invalid vehicle number!");
-            } else if (
-              10 === e.target.value.toUpperCase().length &&
-              checkVehicleForExistence(e.target.value.toUpperCase())
-            ) {
+            } else if (checkVehicleForExistence(e.target.value.toUpperCase())) {
               seterrorMsgStatus(true);
               setshowErrorMsg("Vehicle number already served.!");
             }

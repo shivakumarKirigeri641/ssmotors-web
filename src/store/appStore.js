@@ -15,6 +15,7 @@ const appStore = configureStore({
     customercomplaints: customercomplaintsReducer,
     allVehicles: allVehiclesReducer,
     newVehicleDetails: newVehicleDetailsReducer,
+    vehicleNumbers: vehicleNumbersReducer,
     customerDetails: customerDetailsReducer,
   },
 });
