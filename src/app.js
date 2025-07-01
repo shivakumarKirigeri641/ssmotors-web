@@ -9,6 +9,7 @@ import AdminSettings from "./components/adminsettingscomponents/AdminSettings";
 import ServedVehicles from "./components/servedvehiclecomponents/ServedVehicles";
 import AdminProfile from "./components/profilecomponents/AdminProfile";
 import AddNewVehicleToService from "./components/addNewVehicleToService/AddNewVehicleToService";
+import EditNewVehicleToService from "./components/editNewVehicleToService/EditNewVehicleToService";
 import ServedVehicles from "./components/servedvehiclecomponents/ServedVehicles";
 import ServicingVehicles from "./components/servicingvehiclescomponents/ServicingVehicles";
 import Statistics from "./components/statisticscomponents/Statistics";
@@ -58,6 +59,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/addnewvehicletoservice",
         element: <AddNewVehicleToService />,
+      },
+      {
+        path: "/editnewvehicletoservice",
+        element: <EditNewVehicleToService />,
       },
     ],
     errorElement: <Error />,
