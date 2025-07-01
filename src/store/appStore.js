@@ -5,6 +5,7 @@ import servicedVehiclesReducer from "./slices/serviciedVehiclesSlice";
 import allVehiclesReducer from "./slices/allVehiclesSlice";
 import vehicleNumbersReducer from "./slices/vehicleNumbersSlice";
 import newVehicleDetailsReducer from "./slices/newVehicleDetailsSlice";
+import customerDetailsReducer from "./slices/customerDetailsSlice";
 const appStore = configureStore({
   reducer: {
     admin: adminReducer,
@@ -12,6 +13,7 @@ const appStore = configureStore({
     servicedVehicles: servicedVehiclesReducer,
     allVehicles: allVehiclesReducer,
     newVehicleDetails: newVehicleDetailsReducer,
+    customerDetails: customerDetailsReducer,
   },
 });
 export default appStore;

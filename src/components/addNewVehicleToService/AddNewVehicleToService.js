@@ -7,6 +7,7 @@ import validateNewVehicleMandatoryFields from "../../utils/validateNewVehicleMan
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Await } from "react-router";
+import CustomerInformationList from "./customerInformationList/CustomerInformationList";
 const AddNewVehicleToService = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -25,9 +26,7 @@ const AddNewVehicleToService = () => {
       </div>
       <div className="md:flex justify-between items-start m-2 p-2">
         <VehicleInformationList />
-        <div className="w-full md:w-[50%] m-2 p-2 border border-slate-300">
-          customer info
-        </div>
+        <CustomerInformationList />
       </div>
       <div className="m-2 p-2"></div>
     </div>
