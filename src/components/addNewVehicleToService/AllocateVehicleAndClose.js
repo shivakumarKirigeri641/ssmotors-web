@@ -1,6 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { SERVER } from "../../utils/constants";
 
 const AllocateVehicleAndClose = () => {
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const AllocateVehicleAndClose = () => {
   const vehicleVariant = useSelector(
     (store) => store.newVehicleDetails.vehicleVariant
   );
-  const iselectric = useSelector((store) => store.newVehicleDetails.iselectric);
+  const iselectric = useSelector((store) => store.newVehicleDetails.isElectric);
   const fuelPresent = useSelector(
     (store) => store.newVehicleDetails.fuelPresent
   );
@@ -36,7 +38,9 @@ const AllocateVehicleAndClose = () => {
   const email = useSelector((store) => store.customerDetails.email);
   const adderss = useSelector((store) => store.customerDetails.address);
 
-  const customercomplaints = useSelector((store) => {});
+  const customercomplaints = useSelector(
+    (store) => store.customercomplaints.complaints
+  );
   const allocateVehicle = async () => {
     try {
       seterrMsg("");
@@ -53,6 +57,34 @@ const AllocateVehicleAndClose = () => {
       if (!primarymobilenumber) {
         throw new Error("Invalid mobile number provided");
       }
+      const result = {
+        customerComplaintsInfo: customercomplaints,
+        customerInfo: {
+          customerAltMobile: !secondarymobilenumber
+            ? primarymobilenumber
+            : secondarymobilenumber,
+          customerMobile: primarymobilenumber,
+          customerName: customername,
+          customeraddress: !adderss ? "address not provided" : adderss,
+          customeremail: !email ? "ssmotors@gmail.com" : email,
+        },
+        vehicleInfo: {
+          fuelPresent: parseInt(fuelPresent),
+          isElectric: iselectric,
+          kmDriven: kmDriven,
+          vehicleNumber: vehiclenumber,
+          vehicleServiceInDate: vehicleForServiceIn,
+          vehicleServiceOutDate: vehicleForServiceOut,
+          vehicleVariant: vehicleVariant,
+        },
+      };
+      const resultresponse = await axios.post(
+        SERVER + "/admin/insert/addnewvehicletoservice",
+        { result },
+        { withCredentials: true }
+      );
+      console.log(resultresponse);
+      navigate("/admin/servicingvehicles");
     } catch (err) {
       seterrMsg(err.message);
       seterrStatus(true);

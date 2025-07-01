@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 const CustomerComplaintsInput = () => {
   const [customerComplaints, setcustomerComplaints] = useState([]);
   const comp = useSelector((store) => store.customercomplaints);
-  console.log(comp);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState(null);
   const [errorMsg, seterrMsg] = useState("");
