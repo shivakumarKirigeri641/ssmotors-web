@@ -1,0 +1,76 @@
+const { createSlice } = require("@reduxjs/toolkit");
+
+const newVehicleDetailsSlice = createSlice({
+  name: "newVehicleDetails",
+  initialState: {
+    vehicleNumber: null,
+    vehicleVariant: null,
+    fuelPresent: null,
+    vehicleForServiceIn: null,
+    vehicleForServiceOut: null,
+    kmDriven: null,
+    isElectric: null,
+  },
+  reducers: {
+    addNewVehicleDetails_vehicleNumber: (state, action) => {
+      console.log("no:", state.vehicleNumber);
+      state.vehicleNumber = action.payload;
+    },
+    addNewVehicleDetails_vehicleVariant: (state, action) => {
+      state.vehicleVariant = action.payload;
+    },
+    addNewVehicleDetails_fuelPresent: (state, action) => {
+      state.fuelPresent = action.payload;
+    },
+    addNewVehicleDetails_vehicleForServiceIn: (state, action) => {
+      state.vehicleForServiceIn = action.payload;
+    },
+    addNewVehicleDetails_vehicleForServiceOut: (state, action) => {
+      state.vehicleForServiceOut = action.payload;
+    },
+    addNewVehicleDetails_kmDriven: (state, action) => {
+      state.kmDriven = action.payload;
+    },
+    addNewVehicleDetails_isElectric: (state, action) => {
+      state.isElectric = action.payload;
+    },
+    removeNewVehicleDetails_vehicleNumber: (state, action) => {
+      state.vehicleNumber = null;
+    },
+    removeNewVehicleDetails_vehicleVariant: (state, action) => {
+      state.vehicleVariant = null;
+    },
+    removeNewVehicleDetails_fuelPresent: (state, action) => {
+      state.fuelPresent = null;
+    },
+    removeNewVehicleDetails_vehicleForServiceIn: (state, action) => {
+      state.vehicleForServiceIn = null;
+    },
+    removeNewVehicleDetails_vehicleForServiceOut: (state, action) => {
+      state.vehicleForServiceOut = null;
+    },
+    removeNewVehicleDetails_kmDriven: (state, action) => {
+      state.kmDriven = null;
+    },
+    removeNewVehicleDetails_isElectric: (state, action) => {
+      state.isElectric = null;
+    },
+  },
+});
+export const {
+  addNewVehicleDetails_fuelPresent,
+  addNewVehicleDetails_isElectric,
+  addNewVehicleDetails_kmDriven,
+  addNewVehicleDetails_vehicleForServiceIn,
+  addNewVehicleDetails_vehicleForServiceOut,
+  addNewVehicleDetails_vehicleNumber,
+  addNewVehicleDetails_vehicleVariant,
+  removeNewVehicleDetails_fuelPresent,
+  removeNewVehicleDetails_isElectric,
+  removeNewVehicleDetails_kmDriven,
+  removeNewVehicleDetails_vehicleForServiceIn,
+  removeNewVehicleDetails_vehicleForServiceOut,
+  removeNewVehicleDetails_vehicleNumber,
+  removeNewVehicleDetails_vehicleVariant,
+} = newVehicleDetailsSlice.actions;
+export default newVehicleDetailsSlice.reducer;

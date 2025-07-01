@@ -1,13 +1,14 @@
-import axios from "axios";
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import { useState } from "react";
 import validateVehicleNumber from "../../../utils/validateVehicleNumber";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addNewVehicleDetails_vehicleNumber,
+  removeNewVehicleDetails_vehicleNumber,
+} from "../../../store/slices/newVehicleDetailsSlice";
 const VehicleNumber = () => {
+  const dispatch = useDispatch();
+  const vehno = useSelector((store) => store.newVehicleDetails);
+  console.log("vehno", vehno);
   const [errorMsgStatus, seterrorMsgStatus] = useState(false);
   const [showErrorMsg, setshowErrorMsg] = useState("");
   const [vehiclenumberinp, setvehiclenumberinp] = useState("");
@@ -30,19 +31,28 @@ const VehicleNumber = () => {
           placeholder="KA01AA0001"
           value={vehiclenumberinp.toUpperCase()}
           onChange={(e) => {
+            dispatch(removeNewVehicleDetails_vehicleNumber());
             setvehiclenumberinp(e.target.value.toUpperCase());
             seterrorMsgStatus(false);
             setshowErrorMsg("");
             if (!validateVehicleNumber(e.target.value.toUpperCase())) {
               seterrorMsgStatus(true);
               setshowErrorMsg("Invalid vehicle number!");
-            }
-            if (
+            } else if (
               10 === e.target.value.toUpperCase().length &&
               checkVehicleForExistence(e.target.value.toUpperCase())
             ) {
               seterrorMsgStatus(true);
               setshowErrorMsg("Vehicle number already served.!");
+            }
+            if (
+              10 === e.target.value.toUpperCase().length &&
+              !checkVehicleForExistence(e.target.value.toUpperCase())
+            ) {
+              console.log("inside", e.target.value);
+              dispatch(
+                addNewVehicleDetails_vehicleNumber(e.target.value.toUpperCase())
+              );
             }
           }}
         ></input>
