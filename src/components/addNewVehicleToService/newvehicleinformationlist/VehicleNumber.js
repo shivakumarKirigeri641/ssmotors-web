@@ -7,8 +7,8 @@ import {
 } from "../../../store/slices/newVehicleDetailsSlice";
 const VehicleNumber = () => {
   const dispatch = useDispatch();
-  const vehno = useSelector((store) => store.newVehicleDetails);
-  console.log("vehno", vehno);
+  const vehno = useSelector((store) => store.newVehicleDetails?.vehiclenumber);
+
   const [errorMsgStatus, seterrorMsgStatus] = useState(false);
   const [showErrorMsg, setshowErrorMsg] = useState("");
   const [vehiclenumberinp, setvehiclenumberinp] = useState("");
@@ -45,14 +45,8 @@ const VehicleNumber = () => {
               seterrorMsgStatus(true);
               setshowErrorMsg("Vehicle number already served.!");
             }
-            if (
-              10 === e.target.value.toUpperCase().length &&
-              !checkVehicleForExistence(e.target.value.toUpperCase())
-            ) {
-              console.log("inside", e.target.value);
-              dispatch(
-                addNewVehicleDetails_vehicleNumber(e.target.value.toUpperCase())
-              );
+            if (!checkVehicleForExistence(e.target.value.toUpperCase())) {
+              dispatch(addNewVehicleDetails_vehicleNumber(e.target.value));
             }
           }}
         ></input>

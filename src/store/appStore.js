@@ -11,7 +11,7 @@ const appStore = configureStore({
     servicingVehicles: servicingVehiclesReducer,
     servicedVehicles: servicedVehiclesReducer,
     allVehicles: allVehiclesReducer,
-    vehicleNumbers: vehicleNumbersReducer,
+    newVehicleDetails: newVehicleDetailsReducer,
   },
 });
 export default appStore;

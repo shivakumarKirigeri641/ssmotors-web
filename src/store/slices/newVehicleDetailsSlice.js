@@ -3,7 +3,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 const newVehicleDetailsSlice = createSlice({
   name: "newVehicleDetails",
   initialState: {
-    vehicleNumber: null,
+    vehiclenumber: null,
     vehicleVariant: null,
     fuelPresent: null,
     vehicleForServiceIn: null,
@@ -13,8 +13,7 @@ const newVehicleDetailsSlice = createSlice({
   },
   reducers: {
     addNewVehicleDetails_vehicleNumber: (state, action) => {
-      console.log("no:", state.vehicleNumber);
-      state.vehicleNumber = action.payload;
+      state.vehiclenumber = action.payload;
     },
     addNewVehicleDetails_vehicleVariant: (state, action) => {
       state.vehicleVariant = action.payload;
@@ -35,7 +34,7 @@ const newVehicleDetailsSlice = createSlice({
       state.isElectric = action.payload;
     },
     removeNewVehicleDetails_vehicleNumber: (state, action) => {
-      state.vehicleNumber = null;
+      state.vehiclenumber = null;
     },
     removeNewVehicleDetails_vehicleVariant: (state, action) => {
       state.vehicleVariant = null;

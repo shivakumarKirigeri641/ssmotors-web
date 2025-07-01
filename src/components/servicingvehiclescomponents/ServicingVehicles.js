@@ -21,7 +21,6 @@ const ServicingVehicles = () => {
           SERVER + "/admin/feed/getservicingvehicles",
           { withCredentials: true }
         );
-        console.log(result?.data?.data);
         dispatch(addservicingVehicles(result?.data?.data));
         dispatch(removeservicedVehicles());
       } catch (err) {

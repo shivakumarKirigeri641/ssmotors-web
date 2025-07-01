@@ -1,7 +1,7 @@
 const validateVehicleNumber = (vehiclenumber) => {
-  const vehiclenumberRegex1 = /^[A-Z]{2}[0-9]{2}[A-HJ-NP-Z]{1,2}[0-9]{4}$/;
-  const vehiclenumberRegex2 = /^[0-9]{2}BH[0-9]{4}[A-HJ-NP-Z]{1,2}$/;
+  const vehiclenumberRegex =
+    /\b([A-Z]{2}\d{2}[A-Z]{1,3}\d{1,4}|\d{2}BH\d{1,4}[A-Z]{1,2})\b/;
   const vehno = vehiclenumber.toUpperCase();
-  return vehiclenumberRegex1.test(vehno) || vehiclenumberRegex2.test(vehno);
+  return vehiclenumberRegex.test(vehno);
 };
 export default validateVehicleNumber;
