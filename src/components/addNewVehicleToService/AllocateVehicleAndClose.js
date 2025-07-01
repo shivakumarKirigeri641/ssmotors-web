@@ -12,6 +12,7 @@ const AllocateVehicleAndClose = () => {
   const vehicleVariant = useSelector(
     (store) => store.newVehicleDetails.vehicleVariant
   );
+  const iselectric = useSelector((store) => store.newVehicleDetails.iselectric);
   const fuelPresent = useSelector(
     (store) => store.newVehicleDetails.fuelPresent
   );
