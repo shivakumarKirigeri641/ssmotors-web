@@ -34,7 +34,7 @@ const VehicleInformationList = () => {
     fetchVehicleNumbers();
   }, []);
   return (
-    <div className="w-full md:w-[50%] m-2 border border-slate-300 rounded-md">
+    <div className="w-full md:w-[50%] m-2 border border-slate-300 rounded-md shadow-lg">
       <div className="bg-gradient-to-b from-blue-400 to-blue-800 p-2 font-semibold text-white">
         Vehicle information
       </div>
