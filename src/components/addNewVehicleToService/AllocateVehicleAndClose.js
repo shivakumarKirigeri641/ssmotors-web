@@ -6,6 +6,7 @@ import { SERVER } from "../../utils/constants";
 
 const AllocateVehicleAndClose = () => {
   const navigate = useNavigate();
+  const [showSuccessMessage, setshowSuccessMessage] = useState();
   const [errMsg, seterrMsg] = useState("");
   const [errStatus, seterrStatus] = useState(false);
   const vehiclenumber = useSelector(
@@ -42,6 +43,7 @@ const AllocateVehicleAndClose = () => {
     (store) => store.customercomplaints.complaints
   );
   const allocateVehicle = async () => {
+    setshowSuccessMessage(true);
     try {
       seterrMsg("");
       seterrStatus(false);
@@ -112,6 +114,42 @@ const AllocateVehicleAndClose = () => {
         <div className="absolute left-0 animate-bounce text-red-600 font-bold italic">
           <p>!{errMsg}</p>
         </div>
+      )}
+      {showSuccessMessage && (
+        <div className="fixed inset-0 flex justify-center items-center p-2 rounded-2xl z-20">
+          <div className="rounded-xl bg-blue-300">
+            <div className="bg-gradient-to-b from-blue-500 to-blue-600 p-3 rounded-lg text-white font-bold">
+              <p>Vehicle registration message</p>
+            </div>
+            <div className="flex justify-between items-center">
+              <img src={require("../../images/icons/sucess.svg")}></img>
+              <p className=" font-bold p-2">
+                New vehicle registered successfully.
+              </p>
+            </div>
+            <div className="flex justify-center items-center">
+              <button
+                className="bg-green-500 p-2 m-2 w-full rounded-full"
+                onClick={() => {
+                  setshowSuccessMessage(false);
+                  navigate("/admin/servicingvehicles");
+                }}
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/**overlay for success msg */}
+      {showSuccessMessage && (
+        <div
+          className="fixed inset-0 w-full h-screen bg-gray-100 opacity-50 z-10"
+          onClick={() => {
+            setshowSuccessMessage(false);
+            navigate("/admin/servicingvehicles");
+          }}
+        ></div>
       )}
     </div>
   );
