@@ -54,6 +54,15 @@ const newVehicleDetailsSlice = createSlice({
     removeNewVehicleDetails_isElectric: (state, action) => {
       state.isElectric = null;
     },
+    removeAll: (state, action) => {
+      state.fuelPresent = null;
+      state.isElectric = null;
+      state.kmDriven = null;
+      state.vehicleForServiceIn = null;
+      state.vehicleForServiceOut = null;
+      state.vehicleVariant = null;
+      state.vehiclenumber = null;
+    },
   },
 });
 export const {
@@ -71,5 +80,6 @@ export const {
   removeNewVehicleDetails_vehicleForServiceOut,
   removeNewVehicleDetails_vehicleNumber,
   removeNewVehicleDetails_vehicleVariant,
+  removeAll,
 } = newVehicleDetailsSlice.actions;
 export default newVehicleDetailsSlice.reducer;

@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { removeComplaints } from "../../store/slices/customerComplaintsSlice";
+import { removeAllDetailsOfCustomer } from "../../store/slices/customerDetailsSlice";
+import { removeAll } from "../../store/slices/newVehicleDetailsSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { SERVER } from "../../utils/constants";
 
 const AllocateVehicleAndClose = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showSuccessMessage, setshowSuccessMessage] = useState();
   const [errMsg, seterrMsg] = useState("");
@@ -43,7 +47,6 @@ const AllocateVehicleAndClose = () => {
     (store) => store.customercomplaints.complaints
   );
   const allocateVehicle = async () => {
-    setshowSuccessMessage(true);
     try {
       seterrMsg("");
       seterrStatus(false);
@@ -85,8 +88,7 @@ const AllocateVehicleAndClose = () => {
         { result },
         { withCredentials: true }
       );
-      console.log(resultresponse);
-      navigate("/admin/servicingvehicles");
+      setshowSuccessMessage(true);
     } catch (err) {
       seterrMsg(err.message);
       seterrStatus(true);
@@ -105,6 +107,9 @@ const AllocateVehicleAndClose = () => {
       <button
         className="p-2 px-4 m-2 bg-purple-700 rounded-full text-white font-bold"
         onClick={() => {
+          dispatch(removeAll());
+          dispatch(removeAllDetailsOfCustomer());
+          dispatch(removeComplaints());
           navigate("/admin/servicingvehicles");
         }}
       >
@@ -147,6 +152,9 @@ const AllocateVehicleAndClose = () => {
           className="fixed inset-0 w-full h-screen bg-gray-100 opacity-50 z-10"
           onClick={() => {
             setshowSuccessMessage(false);
+            dispatch(removeAll());
+            dispatch(removeAllDetailsOfCustomer());
+            dispatch(removeComplaints());
             navigate("/admin/servicingvehicles");
           }}
         ></div>

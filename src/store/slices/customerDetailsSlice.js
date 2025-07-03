@@ -40,6 +40,13 @@ const customerDetailsSlice = createSlice({
     removeCustomerDetails_removeaddress: (state, action) => {
       state.removeress = null;
     },
+    removeAllDetailsOfCustomer: (state, action) => {
+      state.customername = null;
+      state.primarymobilenumber = null;
+      state.secondarymobilenumber = null;
+      state.email = null;
+      state.address = null;
+    },
   },
 });
 
@@ -54,5 +61,6 @@ export const {
   removeCustomerDetails_primarymobilenumber,
   removeCustomerDetails_removeaddress,
   removeCustomerDetails_secondarymobilenumber,
+  removeAllDetailsOfCustomer,
 } = customerDetailsSlice.actions;
 export default customerDetailsSlice.reducer;
