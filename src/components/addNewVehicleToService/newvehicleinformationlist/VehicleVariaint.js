@@ -9,6 +9,7 @@ const VehicleVariaint = () => {
   const variant = useSelector(
     (store) => store.newVehicleDetails?.vehicleVariant
   );
+  console.log(variant);
   const dispatch = useDispatch();
   const [errorMsgStatus, seterrorMsgStatus] = useState(false);
   const [canShowSuggesssions, setcanShowSuggesssions] = useState(false);
@@ -17,7 +18,7 @@ const VehicleVariaint = () => {
   const [showErrorMsg, setshowErrorMsg] = useState("");
   const variantlist = useSelector((store) => store.allVehicles);
   let filtervariantlist = variantlist?.filter((x) =>
-    x.toLowerCase().includes(searchText.toLowerCase())
+    x?.variantName.toLowerCase().includes(searchText.toLowerCase())
   );
   return (
     <div className="w-full p-2 pb-3 text-gray-700">
@@ -90,14 +91,14 @@ const VehicleVariaint = () => {
               <ul className=" h-96 md:h-52 overflow-auto ">
                 {filtervariantlist?.map((x) => (
                   <li
-                    key={x}
+                    key={x?._id}
                     className="p-2 border-b border-gray-400 hover:italic hover:underline underline-offset-2 cursor-pointer"
                     onClick={() => {
-                      setsearchTextOrg(x);
+                      setsearchTextOrg(x?.variantName);
                       setcanShowSuggesssions(false);
                       seterrorMsgStatus(false);
                       setshowErrorMsg("");
-                      dispatch(addNewVehicleDetails_vehicleVariant(x));
+                      dispatch(addNewVehicleDetails_vehicleVariant(x?._id));
                     }}
                   >
                     <div className="flex justify-start items-center">
@@ -105,7 +106,7 @@ const VehicleVariaint = () => {
                         className="mx-2"
                         src={require("../../../images/icons/bike.svg")}
                       ></img>
-                      {x}
+                      {x?.variantName}
                     </div>
                   </li>
                 ))}

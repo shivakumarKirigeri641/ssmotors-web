@@ -47,6 +47,7 @@ const AllocateVehicleAndClose = () => {
     (store) => store.customercomplaints.complaints
   );
   const allocateVehicle = async () => {
+    let resultresponse = null;
     try {
       seterrMsg("");
       seterrStatus(false);
@@ -65,9 +66,6 @@ const AllocateVehicleAndClose = () => {
       const result = {
         customerComplaintsInfo: customercomplaints,
         customerInfo: {
-          customerAltMobile: !secondarymobilenumber
-            ? primarymobilenumber
-            : secondarymobilenumber,
           customerMobile: primarymobilenumber,
           customerName: customername,
           customeraddress: !adderss ? "address not provided" : adderss,
@@ -83,7 +81,7 @@ const AllocateVehicleAndClose = () => {
           vehicleVariant: vehicleVariant,
         },
       };
-      const resultresponse = await axios.post(
+      resultresponse = await axios.post(
         SERVER + "/admin/insert/addnewvehicletoservice",
         { result },
         { withCredentials: true }
@@ -92,6 +90,7 @@ const AllocateVehicleAndClose = () => {
     } catch (err) {
       seterrMsg(err.message);
       seterrStatus(true);
+    } finally {
     }
   };
   return (
