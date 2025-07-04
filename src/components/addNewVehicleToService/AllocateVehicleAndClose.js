@@ -136,6 +136,9 @@ const AllocateVehicleAndClose = () => {
                 className="bg-green-500 p-2 m-2 w-full rounded-full"
                 onClick={() => {
                   setshowSuccessMessage(false);
+                  dispatch(removeAll());
+                  dispatch(removeAllDetailsOfCustomer());
+                  dispatch(removeComplaints());
                   navigate("/admin/servicingvehicles");
                 }}
               >

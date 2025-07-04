@@ -1,4 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
+import { removeComplaints } from "../../store/slices/customerComplaintsSlice";
+import { removeAllDetailsOfCustomer } from "../../store/slices/customerDetailsSlice";
+import { removeAll } from "../../store/slices/newVehicleDetailsSlice";
 import { addServicingVehicles } from "../../store/slices/servicingVehiclesSlice";
 import ServicingVehiclesTableMobScr from "./ServicingVehiclesTableMobScr";
 import Error from "../Error";
@@ -43,6 +46,9 @@ const ServicingVehicles = () => {
         <button
           className="bg-[#4F39F6] p-2 rounded-lg text-white"
           onClick={() => {
+            dispatch(removeAll());
+            dispatch(removeAllDetailsOfCustomer());
+            dispatch(removeComplaints());
             navigate("/addnewvehicletoservice");
           }}
         >
