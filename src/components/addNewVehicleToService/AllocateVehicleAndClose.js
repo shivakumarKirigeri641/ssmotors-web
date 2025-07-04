@@ -117,7 +117,7 @@ const AllocateVehicleAndClose = () => {
       </button>
       {errStatus && (
         <div className="absolute left-0 animate-bounce text-red-600 font-bold italic">
-          <p>!{errMsg}</p>
+          <p>{errMsg}</p>
         </div>
       )}
       {showSuccessMessage && (
