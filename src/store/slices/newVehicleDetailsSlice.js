@@ -5,11 +5,11 @@ const newVehicleDetailsSlice = createSlice({
   initialState: {
     vehiclenumber: null,
     vehicleVariant: null,
-    fuelPresent: null,
+    fuelPresent: 1,
     vehicleForServiceIn: null,
     vehicleForServiceOut: null,
-    kmDriven: null,
-    isElectric: null,
+    kmDriven: 0,
+    isElectric: false,
   },
   reducers: {
     addNewVehicleDetails_vehicleNumber: (state, action) => {
@@ -40,7 +40,7 @@ const newVehicleDetailsSlice = createSlice({
       state.vehicleVariant = null;
     },
     removeNewVehicleDetails_fuelPresent: (state, action) => {
-      state.fuelPresent = null;
+      state.fuelPresent = 1;
     },
     removeNewVehicleDetails_vehicleForServiceIn: (state, action) => {
       state.vehicleForServiceIn = null;
@@ -49,15 +49,15 @@ const newVehicleDetailsSlice = createSlice({
       state.vehicleForServiceOut = null;
     },
     removeNewVehicleDetails_kmDriven: (state, action) => {
-      state.kmDriven = null;
+      state.kmDriven = 0;
     },
     removeNewVehicleDetails_isElectric: (state, action) => {
-      state.isElectric = null;
+      state.isElectric = false;
     },
     removeAll: (state, action) => {
-      state.fuelPresent = null;
-      state.isElectric = null;
-      state.kmDriven = null;
+      state.fuelPresent = 1;
+      state.isElectric = false;
+      state.kmDriven = 0;
       state.vehicleForServiceIn = null;
       state.vehicleForServiceOut = null;
       state.vehicleVariant = null;
