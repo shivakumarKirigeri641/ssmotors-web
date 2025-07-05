@@ -17,7 +17,6 @@ const ServicedVehiclesTableFullScr = () => {
         .toLowerCase()
         .includes(searchText.toLowerCase())
   );
-  //console.log(servicedVehicles);
   return (
     <div className="text-gray-500 text-sm">
       <div className="relative w-full my-2 flex justify-between items-center">

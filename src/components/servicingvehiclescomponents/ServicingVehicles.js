@@ -1,4 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
+import { removeComplaints } from "../../store/slices/customerComplaintsSlice";
+import { removeAllDetailsOfCustomer } from "../../store/slices/customerDetailsSlice";
+import { removeAll } from "../../store/slices/newVehicleDetailsSlice";
 import { addServicingVehicles } from "../../store/slices/servicingVehiclesSlice";
 import ServicingVehiclesTableMobScr from "./ServicingVehiclesTableMobScr";
 import Error from "../Error";
@@ -9,7 +12,9 @@ import axios from "axios";
 import { SERVER } from "../../utils/constants";
 import { addservicingVehicles } from "../../store/slices/servicingVehiclesSlice";
 import { removeservicedVehicles } from "../../store/slices/serviciedVehiclesSlice";
+import { useNavigate } from "react-router";
 const ServicingVehicles = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const servicingVehicles = useSelector((store) => store.servicingVehicles);
   useEffect(() => {
@@ -19,7 +24,6 @@ const ServicingVehicles = () => {
           SERVER + "/admin/feed/getservicingvehicles",
           { withCredentials: true }
         );
-        console.log(result?.data?.data);
         dispatch(addservicingVehicles(result?.data?.data));
         dispatch(removeservicedVehicles());
       } catch (err) {
@@ -39,7 +43,15 @@ const ServicingVehicles = () => {
             servicing' vehicles
           </p>
         </div>
-        <button className="bg-[#4F39F6] p-2 rounded-lg text-white">
+        <button
+          className="bg-[#4F39F6] p-2 rounded-lg text-white"
+          onClick={() => {
+            dispatch(removeAll());
+            dispatch(removeAllDetailsOfCustomer());
+            dispatch(removeComplaints());
+            navigate("/addnewvehicletoservice");
+          }}
+        >
           Add new vehicle to service
         </button>
       </div>

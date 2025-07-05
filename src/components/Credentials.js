@@ -16,7 +16,6 @@ const Credentials = () => {
       { email, password },
       { withCredentials: true }
     );
-    console.log(result);
     dispatch(addAdmin(result?.data?.data));
     navigate("/admin/dashboard");
   };
