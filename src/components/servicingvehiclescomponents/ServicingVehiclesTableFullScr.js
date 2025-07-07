@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 const ServicingVehiclesTableFullScr = () => {
   const servicingVehicles = useSelector((store) => store.servicingVehicles);
+  const navigate = useNavigate();
   return (
     <div className="text-gray-500 text-sm">
       <div className="">
@@ -37,7 +39,14 @@ const ServicingVehiclesTableFullScr = () => {
                   )}
                 </td>
                 <td>
-                  <button className="text-white p-2 rounded-md">
+                  <button
+                    className="text-white p-2 rounded-md"
+                    onClick={() => {
+                      {
+                        navigate("/editvehicletoservice/" + x?.vehicleNumber);
+                      }
+                    }}
+                  >
                     <img src={require("../../images/icons/edit.svg")}></img>
                   </button>
                 </td>
