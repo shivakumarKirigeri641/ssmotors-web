@@ -33,13 +33,12 @@ const EditVehicleToService = () => {
         <p>Loading....</p>
       ) : (
         <div>
-          <div className="md:flex justify-between border border-slate-300 items-start p-2 m-2 rounded-md shadow-xl">
+          <div className="md:flex justify-between items-start rounded-md shadow-xl">
             <EditVehicle_VehicleInfo />
             <EditVehicle_CustomerInfo />
           </div>
-          <div>
+          <div className="md:flex justify-between items-start rounded-md shadow-xl my-2">
             <EditVehicle_ServiceInfo />
-            <EditVehicle_ServiceProgressInfo />
           </div>
         </div>
       )}
