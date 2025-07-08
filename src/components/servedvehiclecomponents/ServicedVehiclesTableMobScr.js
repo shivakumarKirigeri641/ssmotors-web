@@ -43,11 +43,13 @@ const ServicedVehiclesTableMobScr = () => {
       <div className="h-screen overflow-auto">
         <table className="table-auto">
           <thead className="text-left bg-slate-300 text-gray-800">
-            <th></th>
-            <th>Vehicle details</th>
-            <th>Customer detials</th>
-            <th>Repeat</th>
-            <th>Edit</th>
+            <tr>
+              <th></th>
+              <th>Vehicle details</th>
+              <th>Customer detials</th>
+              <th>Repeat</th>
+              <th>Edit</th>
+            </tr>
           </thead>
           <tbody className="border-t border-black">
             {filterservicedVehicles?.map((x, index) => (

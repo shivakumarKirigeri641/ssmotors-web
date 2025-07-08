@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const ServicedVehiclesTableFullScr = () => {
+  const navigate = useNavigate();
   const [searchText, setsearchText] = useState("");
   const servicedVehicles = useSelector((store) => store.servicedVehicles);
   let filterservicedVehicles = servicedVehicles.filter(
@@ -44,13 +46,15 @@ const ServicedVehiclesTableFullScr = () => {
       <div className="">
         <table className="w-full">
           <thead className="text-left border-b border-black">
-            <th></th>
-            <th>Vehicle number</th>
-            <th>Brand/model</th>
-            <th>Customer Name</th>
-            <th>Mobile number</th>
-            <th>Repeat</th>
-            <th>Edit</th>
+            <tr>
+              <th></th>
+              <th>Vehicle number</th>
+              <th>Brand/model</th>
+              <th>Customer Name</th>
+              <th>Mobile number</th>
+              <th>Repeat</th>
+              <th>Edit</th>
+            </tr>
           </thead>
           <tbody>
             {filterservicedVehicles?.map((x, index) => (
@@ -71,7 +75,14 @@ const ServicedVehiclesTableFullScr = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="text-white rounded-md">
+                  <button
+                    className="text-white rounded-md"
+                    onClick={() => {
+                      {
+                        navigate("/editvehicletoservice/" + x?.vehicleNumber);
+                      }
+                    }}
+                  >
                     <img src={require("../../images/icons/edit.svg")}></img>
                   </button>
                 </td>

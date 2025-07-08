@@ -8,13 +8,15 @@ const ServicingVehiclesTableFullScr = () => {
       <div className="">
         <table className="w-full">
           <thead className="text-left border-b border-black">
-            <th></th>
-            <th>Vehicle number</th>
-            <th>Brand/model</th>
-            <th>Customer Name</th>
-            <th>Mobile number</th>
-            <th>Status</th>
-            <th>Options</th>
+            <tr>
+              <th></th>
+              <th>Vehicle number</th>
+              <th>Brand/model</th>
+              <th>Customer Name</th>
+              <th>Mobile number</th>
+              <th>Status</th>
+              <th>Options</th>
+            </tr>
           </thead>
           <tbody>
             {servicingVehicles?.map((x, index) => (

@@ -1,16 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 const ServicingVehiclesTableMobScr = () => {
+  const navigate = useNavigate();
   const servicingVehicles = useSelector((store) => store.servicingVehicles);
   return (
     <div className="text-gray-500 text-sm w-full h-screen">
       <div className="">
         <table className="table-auto">
           <thead className="text-left bg-slate-300 text-gray-800">
-            <th></th>
-            <th>Vehicle details</th>
-            <th>Customer detials</th>
-            <th>Status</th>
-            <th>Options</th>
+            <tr>
+              <th></th>
+              <th>Vehicle details</th>
+              <th>Customer detials</th>
+              <th>Status</th>
+              <th>Options</th>
+            </tr>
           </thead>
           <tbody className="border-t border-black">
             {servicingVehicles?.map((x, index) => (
@@ -42,7 +46,14 @@ const ServicingVehiclesTableMobScr = () => {
                   )}
                 </td>
                 <td>
-                  <button className="text-white p-2 rounded-md">
+                  <button
+                    className="text-white p-2 rounded-md"
+                    onClick={() => {
+                      {
+                        navigate("/editvehicletoservice/" + x?.vehicleNumber);
+                      }
+                    }}
+                  >
                     <img src={require("../../images/icons/edit.svg")}></img>
                   </button>
                 </td>
