@@ -68,7 +68,10 @@ const Header = () => {
                     </button>
                   </div>
                   <ul className="" onClick={() => setopendrawer(false)}>
-                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                    <li
+                      key="Servicing vehicles"
+                      className="p-3 cursor-pointer hover:underline underline-offset-2"
+                    >
                       <div className="flex justify-start items-center">
                         <img
                           className="mx-2"
@@ -79,7 +82,10 @@ const Header = () => {
                         </Link>
                       </div>
                     </li>
-                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                    <li
+                      key="Served vehicles"
+                      className="p-3 cursor-pointer hover:underline underline-offset-2"
+                    >
                       <div className="flex justify-start items-center">
                         <img
                           className="mx-2"
@@ -88,7 +94,10 @@ const Header = () => {
                         <Link to="/admin/servedvehicles">Served vehicles</Link>
                       </div>
                     </li>
-                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                    <li
+                      key="Statistics"
+                      className="p-3 cursor-pointer hover:underline underline-offset-2"
+                    >
                       <div className="flex justify-start items-center">
                         <img
                           className="mx-2"
@@ -97,7 +106,10 @@ const Header = () => {
                         <Link to="/admin/statistics">Statistics</Link>
                       </div>
                     </li>
-                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                    <li
+                      key="Profile"
+                      className="p-3 cursor-pointer hover:underline underline-offset-2"
+                    >
                       <div className="flex justify-start items-center">
                         <img
                           className="mx-2"
@@ -106,7 +118,10 @@ const Header = () => {
                         <Link to="/admin/profile">Profile</Link>
                       </div>
                     </li>
-                    <li className="p-3 cursor-pointer hover:underline underline-offset-2">
+                    <li
+                      key="Settings"
+                      className="p-3 cursor-pointer hover:underline underline-offset-2"
+                    >
                       <div className="flex justify-start items-center">
                         <img
                           className="mx-2"

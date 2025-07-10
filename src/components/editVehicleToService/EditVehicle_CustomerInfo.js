@@ -39,9 +39,8 @@ const EditVehicle_CustomerInfo = () => {
         <textarea
           className="w-[70%] px-2 border border-slate-300 rounded-md"
           disabled
-        >
-          {editVehicleFullDetails?.customerId?.address}
-        </textarea>
+          value={editVehicleFullDetails?.customerId?.address}
+        ></textarea>
       </div>
     </div>
   );
