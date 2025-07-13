@@ -6,7 +6,7 @@ const EditVehicle_CustomerInfo = () => {
     (store) => store.editVehicleFullDetails
   );
   return (
-    <div className="w-full md:w-[50%] my-2">
+    <div className="w-full md:w-[50%] my-2 text-xs">
       <div className="p-2 text-lg font-semibold bg-gradient-to-b from-slate-200 to-slate-300 w-full rounded-md">
         <p>Customer information</p>
       </div>

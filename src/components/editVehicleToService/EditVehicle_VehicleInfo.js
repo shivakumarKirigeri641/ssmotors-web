@@ -4,9 +4,8 @@ const EditVehicle_VehicleInfo = () => {
   const editVehicleFullDetails = useSelector(
     (store) => store.editVehicleFullDetails
   );
-  console.log(editVehicleFullDetails);
   return (
-    <div className="w-full md:w-[50%] my-2">
+    <div className="w-full md:w-[50%] my-2 text-xs">
       <div className="p-2 text-lg font-semibold bg-gradient-to-b from-slate-200 to-slate-300 w-full rounded-md">
         <p>Vehicle information</p>
       </div>
