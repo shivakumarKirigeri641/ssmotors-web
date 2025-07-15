@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addselectedServiceDate } from "../../store/slices/selectedServiceDateSlice";
+import ComboBox from "../customcomponents/ComboBox";
 const EditVehicle_ServiceInfo_Dates = () => {
   const dispatch = useDispatch();
   const [openDates, setopenDates] = useState(false);
@@ -11,10 +12,11 @@ const EditVehicle_ServiceInfo_Dates = () => {
   dispatch(addselectedServiceDate(selectedServiceDateIndex));
   console.log(editVehicleFullDetails);
   return (
-    <div className="relative">
-      <p className="p-2 bg-blue-100 rounded-md font-semibold">
+    <div className="relative flex items-center">
+      <p className="p-2 rounded-md font-semibold text-nowrap">
         Select service date:
       </p>
+      <ComboBox />
     </div>
   );
 };

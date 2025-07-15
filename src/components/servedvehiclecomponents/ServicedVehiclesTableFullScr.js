@@ -43,7 +43,7 @@ const ServicedVehiclesTableFullScr = () => {
         )}
         <label className=""></label>
       </div>
-      <div className="">
+      <div>
         <table className="w-full">
           <thead className="text-left border-b border-black">
             <tr>

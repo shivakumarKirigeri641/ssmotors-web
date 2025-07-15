@@ -18,7 +18,7 @@ const EditVehicle_ServiceInfo = () => {
         {/**dates */}
 
         {/**content */}
-        <div className="flex">
+        <div className="md:flex justify-between">
           <EditVehicle_ServiceInfo_Accrdion />
           {/**content */}
           <div>bills</div>
