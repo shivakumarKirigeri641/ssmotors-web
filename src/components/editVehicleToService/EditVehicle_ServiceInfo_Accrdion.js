@@ -5,6 +5,8 @@ import ServiceCheckList from "./servicecontentData/ServiceCheckList";
 import CustomerComplaints from "./servicecontentData/CustomerComplaints";
 import MechanicObservations from "./servicecontentData/MechanicObservations";
 import AfterServiceComplaints from "./servicecontentData/AfterServiceComplaints";
+import StandardServices from "./servicecontentData/StandardServices";
+import PartsAndAccessories from "./servicecontentData/PartsAndAccessories";
 const EditVehicle_ServiceInfo_Accrdion = () => {
   let index = 0;
   const [selectedAccordionIndex, setselectedAccordionIndex] = useState(0);
@@ -15,7 +17,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
   );
   console.log(editVehicleFullDetails?.serviceDataId?.list[selectedServiceDate]);
   return (
-    <div className="w-full my-1 p-2 rounded-lg border border-slate-300 overflow-auto">
+    <div className="w-full my-1 p-2 rounded-lg overflow-auto">
       <ul className="">
         <li className="" key={0}>
           <div
@@ -145,38 +147,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
               <p>Standard services checklist</p>
               {1 === selectedAccordionIndex ? <p>⬆️</p> : <p>⬇️</p>}
             </div>
-            {1 === selectedAccordionIndex && (
-              <div className="m-1 p-2 border border-slate-300 rounded">
-                <table className="table-fixed w-full">
-                  <thead className="border-b border-slate-400">
-                    <tr>
-                      <th>Sl No</th>
-                      <th>Title</th>
-                      <th>Description</th>
-                      <th>Status</th>
-                      <th>Is Payable?</th>
-                      <th>Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {editVehicleFullDetails?.serviceDataId?.list[
-                      selectedServiceDate
-                    ]?.StandardServicesCheckListId?.list.map((x) => (
-                      <tr className="border-b border-slate-300">
-                        <td></td>
-                        <td>{x.title}</td>
-                        <td>
-                          <div className="text-xs italic">{x.description}</div>
-                        </td>
-                        <td>{x.isChecked ? <p>✅</p> : <p>🟠</p>}</td>
-                        <td>{x.isAmountPayable ? <p>Yes</p> : <p>No</p>}</td>
-                        <td>INR. {x.amount}.00</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+            {1 === selectedAccordionIndex && <StandardServices />}
           </div>
         </li>
         <li
@@ -187,7 +158,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
           }}
         >
           <div>
-            <div className="flex justify-between bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold">
+            <div className="flex justify-between  bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold cursor-pointer">
               <p>Customer complaints</p>
               {2 === selectedAccordionIndex ? <p>⬆️</p> : <p>⬇️</p>}
             </div>
@@ -206,7 +177,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
           }}
         >
           <div>
-            <div className="flex justify-between bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold">
+            <div className="flex justify-between  bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold cursor-pointer">
               <p>Mechanic observations</p>
               {3 === selectedAccordionIndex ? <p>⬆️</p> : <p>⬇️</p>}
             </div>
@@ -225,7 +196,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
           }}
         >
           <div>
-            <div className="flex justify-between bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold">
+            <div className="flex justify-between  bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold cursor-pointer">
               <p>After service complaints</p>
               {4 === selectedAccordionIndex ? <p>⬆️</p> : <p>⬇️</p>}
             </div>
@@ -244,15 +215,11 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
           }}
         >
           <div>
-            <div className="flex justify-between bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold">
+            <div className="flex justify-between  bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold cursor-pointer">
               <p>Parts & accessories</p>
               {5 === selectedAccordionIndex ? <p>⬆️</p> : <p>⬇️</p>}
             </div>
-            {5 === selectedAccordionIndex && (
-              <div className="m-1 p-2 border border-slate-300 rounded">
-                parst & contents
-              </div>
-            )}
+            {5 === selectedAccordionIndex && <PartsAndAccessories />}
           </div>
         </li>
       </ul>

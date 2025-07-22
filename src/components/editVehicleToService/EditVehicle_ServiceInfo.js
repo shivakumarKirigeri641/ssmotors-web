@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import EditVehicle_ServiceInfo_Dates from "./EditVehicle_ServiceInfo_Dates";
 import EditVehicle_ServiceInfo_Accrdion from "./EditVehicle_ServiceInfo_Accrdion";
+import EditVehicle_BillingInformation from "./EditVehicle_BillingInformation";
 
 const EditVehicle_ServiceInfo = () => {
   const editVehicleFullDetails = useSelector(
@@ -14,15 +15,19 @@ const EditVehicle_ServiceInfo = () => {
       </div>
       <div className="md:flex justify-between">
         {/**dates */}
-        <EditVehicle_ServiceInfo_Dates />
+        <div className="w-full md:w-[20%]">
+          <EditVehicle_ServiceInfo_Dates />
+        </div>
         {/**dates */}
 
         {/**content */}
-        <div className="md:flex w-full justify-between border border-slate-200 rounded-md">
+        <div className="w-full md:w-[60%]">
           <EditVehicle_ServiceInfo_Accrdion />
-          {/**content */}
-          <div>bills</div>
         </div>
+        <div className="w-full md:w-[30%]">
+          <EditVehicle_BillingInformation />
+        </div>
+        {/**content */}
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ const EditVehicleToService = () => {
     fetchSelectedVehicleDetails();
   }, []);
   return (
-    <div className="h-screen w-full p-2 md:w-[70%] md:mx-auto text-sm">
+    <div className="h-screen w-full p-2 md:mx-auto text-sm">
       {!editVehicleFullDetails ? (
         <p>Loading....</p>
       ) : (

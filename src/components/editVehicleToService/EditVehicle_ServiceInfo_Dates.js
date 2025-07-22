@@ -18,7 +18,7 @@ const EditVehicle_ServiceInfo_Dates = () => {
     dispatch(addselectedServiceDate(selectedServiceDateIndex));
   }, []);
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center w-full">
       <div className="flex md:hidden w-full">
         <p className="p-2 rounded-md font-semibold text-nowrap">
           Select service date:
@@ -29,7 +29,10 @@ const EditVehicle_ServiceInfo_Dates = () => {
           defaultSelectedIndex={selectedServiceDateIndex}
         />
       </div>
-      <div className="hidden md:block border border-slate-200 h-full">
+      <div className="hidden md:block border w-full border-slate-200 h-full">
+        <p className="p-2 bg-gradient-to-b from-gray-100 to-gray-300 text-center my-1">
+          Service dates
+        </p>
         <ul className="h-96 overflow-auto">
           {editVehicleFullDetails?.serviceDataId?.list.map((x, index) => (
             <li
