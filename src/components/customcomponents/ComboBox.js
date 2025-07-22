@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const ComboBox = () => {
+const ComboBox = ({ list, onComboSelectionChange, defaultSelectedIndex }) => {
   const [canShowDropDown, setcanShowDropDown] = useState(false);
-  const [selectedServiceDateIndex, setselectedServiceDateIndex] = useState(0);
-  const editVehicleFullDetails = useSelector(
-    (store) => store.editVehicleFullDetails
-  );
-  console.log(editVehicleFullDetails);
+  const [selectedServiceDateIndex, setselectedServiceDateIndex] =
+    useState(defaultSelectedIndex);
   return (
     <div
       className="relative border border-gray-300 w-full text-nowrap 
@@ -21,9 +18,7 @@ const ComboBox = () => {
       >
         <div className="flex justify-between p-2 shadow-lg">
           <p>
-            {editVehicleFullDetails?.serviceDataId?.list[
-              selectedServiceDateIndex
-            ].dateOfVehicleEntry.slice(0, 10)}
+            {list[selectedServiceDateIndex].dateOfVehicleEntry.slice(0, 10)}
           </p>
           <p>⬇️</p>
           {canShowDropDown && (
@@ -40,13 +35,17 @@ const ComboBox = () => {
               className="absolute w-full h-40 overflow-auto left-0 p-1
              top-10 text-left border border-slate-300 rounded-md z-40"
             >
-              {editVehicleFullDetails?.serviceDataId?.list.map((x, index) => (
+              {list.map((x, index) => (
                 <li
                   key={x.dateOfVehicleEntry}
                   className="p-2 border-b border-gray-400 hover:bg-blue-300"
                   onClick={() => {
-                    console.log(canShowDropDown);
                     setselectedServiceDateIndex(index);
+                    onComboSelectionChange(
+                      index,
+                      x.dateOfVehicleEntry.slice(0, 10)
+                    );
+                    selectedindex = index;
                     setcanShowDropDown(false);
                   }}
                 >

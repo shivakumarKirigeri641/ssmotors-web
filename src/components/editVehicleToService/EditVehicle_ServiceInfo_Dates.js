@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addselectedServiceDate } from "../../store/slices/selectedServiceDateSlice";
 import ComboBox from "../customcomponents/ComboBox";
@@ -10,13 +10,46 @@ const EditVehicle_ServiceInfo_Dates = () => {
     (store) => store.editVehicleFullDetails
   );
   dispatch(addselectedServiceDate(selectedServiceDateIndex));
-  console.log(editVehicleFullDetails);
+  const handlecomboboxchange = (index, selecteditem) => {
+    setselectedServiceDateIndex(index);
+  };
+  useEffect(() => {
+    setselectedServiceDateIndex(0);
+    dispatch(addselectedServiceDate(selectedServiceDateIndex));
+  }, []);
   return (
     <div className="relative flex items-center">
-      <p className="p-2 rounded-md font-semibold text-nowrap">
-        Select service date:
-      </p>
-      <ComboBox />
+      <div className="flex md:hidden w-full">
+        <p className="p-2 rounded-md font-semibold text-nowrap">
+          Select service date:
+        </p>
+        <ComboBox
+          list={editVehicleFullDetails?.serviceDataId?.list}
+          onComboSelectionChange={handlecomboboxchange}
+          defaultSelectedIndex={selectedServiceDateIndex}
+        />
+      </div>
+      <div className="hidden md:block border border-slate-200 h-full">
+        <ul className="h-96 overflow-auto">
+          {editVehicleFullDetails?.serviceDataId?.list.map((x, index) => (
+            <li
+              key={index}
+              className={
+                index === selectedServiceDateIndex
+                  ? "text-nowrap p-2 mx-2 text-left bg-blue-400 rounded-md cursor-pointer"
+                  : "text-nowrap p-2 mx-2 text-left bg-white hover:bg-blue-200 rounded-md cursor-pointer"
+              }
+              onClick={() => {
+                setselectedServiceDateIndex(index);
+              }}
+            >
+              <div>
+                <p>🗓️ {x.dateOfVehicleEntry.slice(0, 10)}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

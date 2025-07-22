@@ -12,13 +12,13 @@ const EditVehicle_ServiceInfo = () => {
       <div className="p-2 text-lg font-semibold bg-gradient-to-b from-slate-200 to-slate-300 w-full rounded-md">
         <p>service details</p>
       </div>
-      <div className="">
+      <div className="md:flex justify-between">
         {/**dates */}
         <EditVehicle_ServiceInfo_Dates />
         {/**dates */}
 
         {/**content */}
-        <div className="md:flex justify-between">
+        <div className="md:flex w-full justify-between border border-slate-200 rounded-md">
           <EditVehicle_ServiceInfo_Accrdion />
           {/**content */}
           <div>bills</div>
