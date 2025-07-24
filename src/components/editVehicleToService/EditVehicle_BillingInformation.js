@@ -45,7 +45,7 @@ const EditVehicle_BillingInformation = () => {
           );
         }, 0)
     );
-  }, []);
+  }, [selectedServiceDate]);
   return (
     <div className="w-full">
       <p className="p-2 bg-gradient-to-b from-gray-100 to-gray-300 text-center my-1">

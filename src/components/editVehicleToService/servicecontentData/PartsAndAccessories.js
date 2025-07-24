@@ -38,7 +38,7 @@ const PartsAndAccessories = () => {
                         {" "}
                         INR.{" "}
                         {x.quantity * x.amount +
-                          (x.quantity * x.amount * 18) / 100}
+                          (x.quantity * x.amount * (x.cGST + x.cGST)) / 100}
                       </span>
                     </div>
                   </div>
@@ -78,7 +78,7 @@ const PartsAndAccessories = () => {
                         {" "}
                         INR.{" "}
                         {x.quantity * x.amount +
-                          (x.quantity * x.amount * 18) / 100}
+                          (x.quantity * x.amount * (x.cGST + x.sGST)) / 100}
                       </span>
                     </div>
                   </div>
