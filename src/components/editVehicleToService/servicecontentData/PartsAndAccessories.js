@@ -6,6 +6,7 @@ const PartsAndAccessories = () => {
   const editVehicleFullDetails = useSelector(
     (store) => store.editVehicleFullDetails
   );
+  console.log(editVehicleFullDetails);
   return (
     <div className="border border-slate-300 ">
       <div className="hidden md:block m-1 p-2 borderrounded text-xs">
