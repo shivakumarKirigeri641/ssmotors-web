@@ -1,147 +1,50 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useDebugValue, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import GeneralDetails from "./servicecontentData/GeneralDetails";
 import ServiceCheckList from "./servicecontentData/ServiceCheckList";
 import CustomerComplaints from "./servicecontentData/CustomerComplaints";
 import MechanicObservations from "./servicecontentData/MechanicObservations";
 import AfterServiceComplaints from "./servicecontentData/AfterServiceComplaints";
 import StandardServices from "./servicecontentData/StandardServices";
+import { addserviceAccordionIndex } from "../../store/slices/serviceAccordionIndexSlice";
 import PartsAndAccessories from "./servicecontentData/PartsAndAccessories";
 const EditVehicle_ServiceInfo_Accrdion = () => {
   let index = 0;
-  const [selectedAccordionIndex, setselectedAccordionIndex] = useState(0);
-  console.log(selectedAccordionIndex);
+  const dispatch = useDispatch();
+  const selectedAccordionIndex = useSelector(
+    (store) => store.serviceAccordionIndex
+  );
   const selectedServiceDate = useSelector((store) => store.selectedServiceDate);
   const editVehicleFullDetails = useSelector(
     (store) => store.editVehicleFullDetails
   );
-  console.log(editVehicleFullDetails?.serviceDataId?.list[selectedServiceDate]);
   return (
-    <div className="w-full my-1 p-2 rounded-lg overflow-auto">
+    <div className="w-full my-1 p-2 rounded-lg">
       <ul className="">
         <li className="" key={0}>
           <div
             className="flex justify-between  bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold cursor-pointer"
             onClick={(e) => {
-              setselectedAccordionIndex(0);
+              dispatch(addserviceAccordionIndex(0));
             }}
           >
             <p>General</p>
             {0 === selectedAccordionIndex ? <p>⬆️</p> : <p>⬇️</p>}
           </div>
-          {0 === selectedAccordionIndex && (
-            <div>
-              <table className="table-fixed w-full">
-                <thead className="border-b border-slate-400">
-                  <tr>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Service entry</td>
-                    <td>
-                      <div className="p-1 font-semibold">
-                        {editVehicleFullDetails?.serviceDataId?.list[
-                          selectedServiceDate
-                        ].dateOfVehicleEntry.slice(0, 10)}
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Service exit</td>
-                    <td>
-                      <div className="p-1 font-semibold">
-                        {editVehicleFullDetails?.serviceDataId?.list[
-                          selectedServiceDate
-                        ].dateOfVehicleExit.slice(0, 10)}
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>km driven</td>
-                    <td>
-                      <div className="p-1 font-semibold">
-                        {
-                          editVehicleFullDetails?.serviceDataId?.list[
-                            selectedServiceDate
-                          ].kmDriven
-                        }
-                        km
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Fuel present</td>
-                    <td>
-                      <div className="p-1 font-semibold">
-                        {
-                          editVehicleFullDetails?.serviceDataId?.list[
-                            selectedServiceDate
-                          ].fuelPercentBeforeService
-                        }
-                        %
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Is latest service</td>
-                    <td>
-                      <div className="p-1 font-semibold">
-                        {editVehicleFullDetails?.serviceDataId?.list[
-                          selectedServiceDate
-                        ].isLatestService ? (
-                          <p>Yes</p>
-                        ) : (
-                          <p>No</p>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="border border-slate-200 h-0.5 bg-slate-300">
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Next service (km)</td>
-                    <td>
-                      <div className="p-1 font-semibold">
-                        {
-                          editVehicleFullDetails?.serviceDataId?.list[
-                            selectedServiceDate
-                          ].kmForNextService
-                        }
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Next service (date)</td>
-                    <td>
-                      <div className="p-1 font-semibold">
-                        {editVehicleFullDetails?.serviceDataId?.list[
-                          selectedServiceDate
-                        ].dateForNextService.slice(0, 10)}
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          )}
+          {0 === selectedAccordionIndex && <GeneralDetails />}
         </li>
         <li
           className=""
           key={1}
           onClick={(e) => {
-            setselectedAccordionIndex(1);
+            dispatch(addserviceAccordionIndex(1));
           }}
         >
           <div>
             <div
               className="flex justify-between  bg-gradient-to-b from-blue-100 to-blue-200 p-2 rounded font-semibold cursor-pointer"
               onClick={(e) => {
-                setselectedAccordionIndex(1);
+                dispatch(addserviceAccordionIndex(1));
               }}
             >
               <p>Standard services checklist</p>
@@ -154,7 +57,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
           className=""
           key={2}
           onClick={(e) => {
-            setselectedAccordionIndex(2);
+            dispatch(addserviceAccordionIndex(2));
           }}
         >
           <div>
@@ -173,7 +76,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
           className=""
           key={3}
           onClick={(e) => {
-            setselectedAccordionIndex(3);
+            dispatch(addserviceAccordionIndex(3));
           }}
         >
           <div>
@@ -192,7 +95,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
           className=""
           key={4}
           onClick={(e) => {
-            setselectedAccordionIndex(4);
+            dispatch(addserviceAccordionIndex(4));
           }}
         >
           <div>
@@ -211,7 +114,7 @@ const EditVehicle_ServiceInfo_Accrdion = () => {
           className=""
           key={5}
           onClick={(e) => {
-            setselectedAccordionIndex(5);
+            dispatch(addserviceAccordionIndex(5));
           }}
         >
           <div>

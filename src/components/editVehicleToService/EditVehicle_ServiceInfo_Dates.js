@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addserviceAccordionIndex } from "../../store/slices/serviceAccordionIndexSlice";
 import { addselectedServiceDate } from "../../store/slices/selectedServiceDateSlice";
 import ComboBox from "../customcomponents/ComboBox";
 const EditVehicle_ServiceInfo_Dates = () => {
@@ -10,6 +11,7 @@ const EditVehicle_ServiceInfo_Dates = () => {
     (store) => store.editVehicleFullDetails
   );
   dispatch(addselectedServiceDate(selectedServiceDateIndex));
+  dispatch(addserviceAccordionIndex(0));
   const handlecomboboxchange = (index, selecteditem) => {
     setselectedServiceDateIndex(index);
   };

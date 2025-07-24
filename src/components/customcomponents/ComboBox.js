@@ -25,7 +25,6 @@ const ComboBox = ({ list, onComboSelectionChange, defaultSelectedIndex }) => {
             <div
               className="fixed w-screen h-screen inset-0 z-10 "
               onClick={() => {
-                console.log(canShowDropDown);
                 setcanShowDropDown(false);
               }}
             ></div>
@@ -33,7 +32,7 @@ const ComboBox = ({ list, onComboSelectionChange, defaultSelectedIndex }) => {
           {canShowDropDown && (
             <ul
               className="absolute w-full h-40 overflow-auto left-0 p-1
-             top-10 text-left border border-slate-300 rounded-md z-40"
+             top-10 text-left border border-slate-400 rounded-md z-40 bg-slate-100"
             >
               {list.map((x, index) => (
                 <li

@@ -7,97 +7,83 @@ const PartsAndAccessories = () => {
     (store) => store.editVehicleFullDetails
   );
   return (
-    <div>
-      <div className="hidden md:block m-1 p-2 border border-slate-300 rounded">
-        <table className="table-fixed w-full">
-          <thead className="border-b border-slate-400">
-            <tr>
-              <th>Sl No</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Is Payable?</th>
-              <th>Unit price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Tax</th>
-              <th>Grand total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {editVehicleFullDetails?.serviceDataId?.list[
-              selectedServiceDate
-            ]?.partsAndAccessoriesId?.list.map((x) => (
-              <tr className="border-b border-slate-300">
-                <td></td>
-                <td>{x.title}</td>
-                <td>
-                  <div className="text-xs italic">{x.description}</div>
-                </td>
-                <td>{x.isAmountPayable}</td>
-                <td>{x.amount}</td>
-                <td>{x.quantity}</td>
-                <td>{x.quantity * x.amount}.00</td>
-                <td>
-                  {x.cGST}% / {x.sGST}%
-                </td>
-                <td>
-                  <div className="font-bold underline underline-offset-2">
-                    INR.{" "}
-                    {x.amount * x.quantity +
-                      ((x.cGST * x.amount * x.quantity) / 100 +
-                        (x.sGST * x.amount * x.quantity) / 100)}
+    <div className="border border-slate-300 ">
+      <div className="hidden md:block m-1 p-2 borderrounded text-xs">
+        <ul>
+          {editVehicleFullDetails?.serviceDataId?.list[
+            selectedServiceDate
+          ]?.partsAndAccessoriesId?.list
+            .filter((y) => y !== null)
+            .map((x, index) => (
+              <li key={index}>
+                <div className="flex">
+                  <div className="border-b border-slate-400 flex justify-between w-full">
+                    <p className="text-xs p-1.5 font-semibold w-[4%]">
+                      {index + 1}
+                    </p>
+                    <p className="text-xs p-1.5 font-semibold w-[10%]">
+                      {x.title}
+                    </p>
+                    <p className="text-xs p-1.5 italic text-left w-[65%]">
+                      {x.description}
+                    </p>
+                    <div className="text-xm p-1.5 font-bold text-blue-700 w-[25%]">
+                      Item bill: {x.amount}
+                      <span className="px-2">X</span>
+                      {x.quantity}
+                      <span className="px-2">+</span>
+                      (tax {x.cGST}%) ={" "}
+                      <span className="px-2 text-[100%] font-bold text-green-700 underline underline-offset-2">
+                        {" "}
+                        INR. {(x.quantity * x.amount * 18) / 100}
+                      </span>
+                    </div>
                   </div>
-                </td>
-              </tr>
+                  <div className="flex text-lg">
+                    <button className="mx-2">📝</button>
+                  </div>
+                </div>
+              </li>
             ))}
-          </tbody>
-        </table>
+        </ul>
+        <div className="flex justify-end text-lg ">
+          <button className="bg-green-400 rounded-full p-2">➕</button>
+        </div>
       </div>
-      <div className="block md:hidden m-1 p-2 border border-slate-300 rounded">
-        <table className="table-fixed w-full text-xs">
-          <thead className="border-b border-slate-400">
-            <tr>
-              <th>Description</th>
-              <th>Quantity</th>
-              <th>Unit price</th>
-              <th>Total</th>
-              <th>Tax</th>
-              <th>Grand total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {editVehicleFullDetails?.serviceDataId?.list[
-              selectedServiceDate
-            ]?.partsAndAccessoriesId?.list.map((x) => (
-              <tr className="border-b border-slate-300">
-                <td>
-                  <div className="text-sm">
-                    <p className="font-semibold text-nowrap py-1">{x.title}</p>
-                    <p className="text-xs italic">{x.description}</p>
+      <div className="block md:hidden m-1 p-2 rounded">
+        <ul>
+          {editVehicleFullDetails?.serviceDataId?.list[
+            selectedServiceDate
+          ]?.partsAndAccessoriesId?.list
+            .filter((y) => y !== null)
+            .map((x, index) => (
+              <li key={index}>
+                <div className="flex justify-between w-full items-center">
+                  <div className="flex text-lg">
+                    <button className="mx-2">📝</button>
                   </div>
-                </td>
-                <td className="text-center">{x.quantity}</td>
-                <td>{x.amount}.00</td>
-                <td>{x.quantity * x.amount}.00</td>
-                <td>
-                  {x.cGST}% / {x.sGST}%
-                </td>
-                <td>
-                  <div className="font-bold underline underline-offset-2">
-                    INR.{" "}
-                    {x.amount * x.quantity +
-                      ((x.cGST * x.amount * x.quantity) / 100 +
-                        (x.sGST * x.amount * x.quantity) / 100)}
+                  <div className="border-b border-slate-400 w-full">
+                    <p className="text-xs p-1.5 font-semibold">{x.title}</p>
+                    <p className="text-xs p-1.5 italic">{x.description}</p>
+                    <div className="text-xm p-1.5 font-bold text-blue-700">
+                      Item bill: {x.amount}
+                      <span className="px-2">X</span>
+                      {x.quantity}
+                      <span className="px-2">+</span>
+                      (tax {x.cGST}%) ={" "}
+                      <span className="px-2 text-[100%] font-bold text-green-700 underline underline-offset-2">
+                        {" "}
+                        INR. {(x.quantity * x.amount * 18) / 100}
+                      </span>
+                    </div>
                   </div>
-                </td>
-              </tr>
+                </div>
+              </li>
             ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="flex justify-around m-1 p-2">
-        <button className="bg-blue-400 w-full p-2 m-1 rounded">Update</button>
-        <button className="bg-red-400 w-full p-2 m-1 rounded">Reset</button>
+        </ul>
+        <div className="flex justify-end text-lg ">
+          <button className="bg-green-400 rounded-full p-2 my-1">➕</button>
+        </div>
       </div>
     </div>
   );

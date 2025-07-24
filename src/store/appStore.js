@@ -8,6 +8,7 @@ import newVehicleDetailsReducer from "./slices/newVehicleDetailsSlice";
 import customerDetailsReducer from "./slices/customerDetailsSlice";
 import customercomplaintsReducer from "./slices/customerComplaintsSlice";
 import selectedServiceDateReducer from "./slices/selectedServiceDateSlice";
+import serviceAccordionIndexReducer from "./slices/serviceAccordionIndexSlice";
 import editVehicleFullDetailsReducer from "../store/slices/editVehicleFullDetailsSlice";
 const appStore = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ const appStore = configureStore({
     vehicleNumbers: vehicleNumbersReducer,
     customerDetails: customerDetailsReducer,
     editVehicleFullDetails: editVehicleFullDetailsReducer,
+    serviceAccordionIndex: serviceAccordionIndexReducer,
   },
 });
 export default appStore;
