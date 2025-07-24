@@ -1,7 +1,9 @@
 import axios from "axios";
 import EditVehicle_VehicleInfo from "./EditVehicle_VehicleInfo";
 import EditVehicle_ServiceProgressInfo from "./EditVehicle_ServiceProgressInfo";
+import EditVehicle_Options from "./EditVehicle_Options";
 import EditVehicle_CustomerInfo from "./EditVehicle_CustomerInfo";
+import EditVehicle_ServiceProgress from "./EditVehicle_ServiceProgress";
 import EditVehicle_ServiceInfo from "./EditVehicle_ServiceInfo";
 import { useEffect } from "react";
 import { addeditVehicleFullDetails } from "../../store/slices/editVehicleFullDetailsSlice";
@@ -37,8 +39,10 @@ const EditVehicleToService = () => {
             <EditVehicle_VehicleInfo />
             <EditVehicle_CustomerInfo />
           </div>
-          <div className="md:flex justify-between items-start rounded-md shadow-xl my-2">
+          <div>
             <EditVehicle_ServiceInfo />
+            <EditVehicle_ServiceProgress />
+            <EditVehicle_Options />
           </div>
         </div>
       )}
