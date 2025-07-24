@@ -8,7 +8,7 @@ const GeneralDetails = () => {
   );
   return (
     <div>
-      <table className="table-fixed w-full">
+      <table className="table-fixed w-full  text-xs">
         <thead className="border-b border-slate-400">
           <tr>
             <th></th>

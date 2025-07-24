@@ -8,7 +8,7 @@ const StandardServices = () => {
   );
   return (
     <div>
-      <div className="hidden md:block m-1 p-2 border border-slate-300 rounded">
+      <div className="hidden md:block m-1 p-2 border border-slate-300 rounded text-xs">
         <table className="table-fixed w-full">
           <thead className="border-b border-slate-400">
             <tr>
@@ -38,7 +38,7 @@ const StandardServices = () => {
           </tbody>
         </table>
       </div>
-      <div className="block md:hidden m-1 p-2 border border-slate-300 rounded">
+      <div className="block md:hidden m-1 p-2 border border-slate-300 rounded text-xs">
         <table className="table-fixed w-full text-xs">
           <thead className="border-b border-slate-400">
             <tr>

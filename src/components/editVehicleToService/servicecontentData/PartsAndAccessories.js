@@ -35,7 +35,9 @@ const PartsAndAccessories = () => {
                       (tax {x.cGST}%) ={" "}
                       <span className="px-2 text-[100%] font-bold text-green-700 underline underline-offset-2">
                         {" "}
-                        INR. {(x.quantity * x.amount * 18) / 100}
+                        INR.{" "}
+                        {x.quantity * x.amount +
+                          (x.quantity * x.amount * 18) / 100}
                       </span>
                     </div>
                   </div>
@@ -55,7 +57,7 @@ const PartsAndAccessories = () => {
           {editVehicleFullDetails?.serviceDataId?.list[
             selectedServiceDate
           ]?.partsAndAccessoriesId?.list
-            .filter((y) => y !== null)
+            .filter((x) => x !== null)
             .map((x, index) => (
               <li key={index}>
                 <div className="flex justify-between w-full items-center">
@@ -73,7 +75,9 @@ const PartsAndAccessories = () => {
                       (tax {x.cGST}%) ={" "}
                       <span className="px-2 text-[100%] font-bold text-green-700 underline underline-offset-2">
                         {" "}
-                        INR. {(x.quantity * x.amount * 18) / 100}
+                        INR.{" "}
+                        {x.quantity * x.amount +
+                          (x.quantity * x.amount * 18) / 100}
                       </span>
                     </div>
                   </div>
