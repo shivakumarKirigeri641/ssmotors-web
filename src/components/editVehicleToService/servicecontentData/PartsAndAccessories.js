@@ -49,7 +49,7 @@ const PartsAndAccessories = () => {
               </li>
             ))}
         </ul>
-        <div className="flex justify-end text-lg ">
+        <div className="flex justify-end text-lg m-1">
           <button className="bg-green-400 rounded-full p-2">➕</button>
         </div>
       </div>
@@ -87,7 +87,7 @@ const PartsAndAccessories = () => {
             ))}
         </ul>
         <div className="flex justify-end text-lg ">
-          <button className="bg-green-400 rounded-full p-2 my-1">➕</button>
+          <button className="bg-green-400 rounded-full p-1 my-1">➕</button>
         </div>
       </div>
     </div>

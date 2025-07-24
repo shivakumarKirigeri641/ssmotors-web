@@ -9,7 +9,7 @@ const EditVehicle_ServiceInfo = () => {
     (store) => store.editVehicleFullDetails
   );
   return (
-    <div className="md:flex justify-between items-start rounded-md shadow-xl my-2 w-full">
+    <div className="rounded-md shadow-xl w-full">
       <div className="p-2 text-lg font-semibold bg-gradient-to-b from-slate-200 to-slate-300 w-full rounded-md">
         <p>service details</p>
       </div>
